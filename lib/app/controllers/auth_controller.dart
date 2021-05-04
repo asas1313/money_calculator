@@ -1,10 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inkubox_app/app/models/user_model.dart';
+import 'package:inkubox_app/app/utils/firestore.dart';
 
 class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
-  final isConnected = false.obs;
+
+  final role = TextEditingController();
+  final email = TextEditingController();
+  final name = TextEditingController();
+  final surname = TextEditingController();
+  final password = TextEditingController();
+  final passwordConfirm = TextEditingController();
+  final position = TextEditingController();
+  final phone = TextEditingController();
+
+  var signedIn = false;
 
   @override
   onReady() {
@@ -12,24 +24,35 @@ class AuthController extends GetxController {
     _subscribeToAuthStateChange();
   }
 
-  String? get email => _auth.currentUser?.email;
-
   _subscribeToAuthStateChange() {
     _auth.authStateChanges().listen((User? user) {
       if (user == null) {
-        isConnected.value = false;
         print('User is currently signed out!');
+        signedIn = false;
       } else {
-        isConnected.value = true;
         print('User is signed in!');
+        signedIn = true;
       }
     });
   }
 
-  createAccount({required String email, required String password}) async {
+  createAccount(
+      {required String emailParam, required String passwordParam}) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      var _userCredential = await _auth.createUserWithEmailAndPassword(
+          email: emailParam, password: passwordParam);
+      var _userModel = UserModel(
+        id: _userCredential.user?.uid,
+        role: role.text.isEmpty ? 'user' : role.text,
+        email: email.text,
+        name: name.text,
+        surname: surname.text,
+        position: position.text,
+        phone: phone.text,
+      );
+      if (await Firestore().saveUser(_userModel)) {
+        Get.back();
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('Provided password is too weak');
@@ -45,14 +68,22 @@ class AuthController extends GetxController {
     }
   }
 
-  signIn({required String email, required String password}) {
+  signIn({required String emailParam, required String passwordParam}) {
     try {
       _auth
-          .signInWithEmailAndPassword(email: email, password: password)
+          .signInWithEmailAndPassword(
+              email: emailParam, password: passwordParam)
           .then((value) {
         var userEmail = value.user;
         print('Successfully signed user with email: $userEmail');
-        isConnected.value = true;
+        Firestore().findUserByEmail(emailParam).then((_userModel) {
+          role.text = _userModel.role;
+          email.text = _userModel.email;
+          name.text = _userModel.name ?? '';
+          surname.text = _userModel.surname ?? '';
+          position.text = _userModel.position ?? '';
+          phone.text = _userModel.phone ?? '';
+        });
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email') {
@@ -73,5 +104,11 @@ class AuthController extends GetxController {
 
   signOut() async {
     await _auth.signOut();
+    role.text = '';
+    email.text = '';
+    name.text = '';
+    surname.text = '';
+    position.text = '';
+    phone.text = '';
   }
 }

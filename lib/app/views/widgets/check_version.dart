@@ -16,7 +16,9 @@ class CheckVersion extends GetWidget<AppController> {
               textDirection: TextDirection.ltr,
               child: Center(
                 child: Text(
-                    'Refresh the application with Ctrl+F5 (or CMD+F5 on Mac).'),
+                  'Refresh the application with Ctrl+F5 (or CMD+F5 on Mac).',
+                  style: TextStyle(color: Colors.red, fontSize: 20),
+                ),
               ),
             ),
     );

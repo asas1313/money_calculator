@@ -6,21 +6,20 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inkubox_app/app/controllers/app_controller.dart';
 import 'package:inkubox_app/app/controllers/auth_controller.dart';
-import 'package:inkubox_app/app/routes/routing_controller.dart';
+import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/home_view.dart';
 import 'package:inkubox_app/app/views/layout/layout_template.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Get.put(AuthController());
-  Get.put(AppController());
   runApp(App());
 }
 
 class App extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
-  final routingController = Get.put(RoutingController());
+  final authController = Get.put(AuthController());
+  final appController = Get.put(AppController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class App extends StatelessWidget {
                 textTheme: GoogleFonts.sairaTextTheme(Get.textTheme),
               ),
               home: LayoutTemplate(child: HomeView()),
-              getPages: routingController.appPages,
+              getPages: AppRouting.appPages,
             );
           } else {
             // Otherwise, show something whilst waiting for initialization to complete

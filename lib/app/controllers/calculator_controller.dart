@@ -13,7 +13,7 @@ class CalculatorController extends GetxController {
     var _initial = double.tryParse(inputController.text) ?? 0;
     final _sum = _initial * 0.003 + 3.5;
     firestore.addCalculation(
-        email: Get.find<AuthController>().email ?? 'unknown',
+        email: Get.find<AuthController>().email.text,
         timestamp: Timestamp.now(),
         sumInitial: _initial,
         sumCalculated: _sum);

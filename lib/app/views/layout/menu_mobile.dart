@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/routes/app_routes.dart';
-import 'package:inkubox_app/app/routes/routing_controller.dart';
+import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/styles/styles.dart';
 
-class MenuMobile extends GetWidget<RoutingController> {
+class MenuMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
