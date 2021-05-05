@@ -1,16 +1,18 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/bindings/calculator_binding.dart';
-import 'package:inkubox_app/app/routes/app_routes.dart';
 import 'package:inkubox_app/app/views/calculator_view.dart';
 import 'package:inkubox_app/app/views/home_view.dart';
 import 'package:inkubox_app/app/views/layout/layout_template.dart';
 import 'package:inkubox_app/app/views/profile_view.dart';
 
-class RoutingController extends GetxController {
-  PageController controller = PageController();
+class Routes {
+  static const HOME = '/home';
+  static const PROFILE = '/profile';
+  static const CALCULATOR = '/calculator';
+}
 
-  var appPages = [
+class AppRouting {
+  static var appPages = [
     GetPage(
       name: Routes.HOME,
       page: () => LayoutTemplate(child: HomeView()),

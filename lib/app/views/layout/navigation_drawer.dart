@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/routes/app_routes.dart';
+import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/styles/styles.dart';
 
 class NavigationDrawer extends StatelessWidget {
