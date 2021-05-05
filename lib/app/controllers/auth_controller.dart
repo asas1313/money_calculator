@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/models/user_model.dart';
+import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/utils/firestore.dart';
 
 class AuthController extends GetxController {
@@ -16,7 +17,7 @@ class AuthController extends GetxController {
   final position = TextEditingController();
   final phone = TextEditingController();
 
-  var signedIn = false;
+  var logedIn = false.obs;
 
   @override
   onReady() {
@@ -27,20 +28,36 @@ class AuthController extends GetxController {
   _subscribeToAuthStateChange() {
     _auth.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is currently signed out!');
-        signedIn = false;
+        print('User is currently loged out!');
+        logedIn.value = false;
       } else {
-        print('User is signed in!');
-        signedIn = true;
+        print('User is loged in!');
       }
     });
   }
 
-  createAccount(
-      {required String emailParam, required String passwordParam}) async {
+  String? validate() {
+    if (email.text.isEmpty) {
+      return 'E-mail must be provided.';
+    }
+    if (!RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email.text)) {
+      return 'Not valid e-mail.';
+    }
+    if (password.text.isEmpty) {
+      return 'Password must be provided.';
+    }
+    if (password.value != passwordConfirm.value) {
+      return 'Passwords do not match.';
+    }
+    return null;
+  }
+
+  createAccount() async {
     try {
       var _userCredential = await _auth.createUserWithEmailAndPassword(
-          email: emailParam, password: passwordParam);
+          email: email.text, password: password.text);
       var _userModel = UserModel(
         id: _userCredential.user?.uid,
         role: role.text.isEmpty ? 'user' : role.text,
@@ -51,6 +68,7 @@ class AuthController extends GetxController {
         phone: phone.text,
       );
       if (await Firestore().saveUser(_userModel)) {
+        login();
         Get.back();
       }
     } on FirebaseAuthException catch (e) {
@@ -68,21 +86,25 @@ class AuthController extends GetxController {
     }
   }
 
-  signIn({required String emailParam, required String passwordParam}) {
+  login({bool goToHome = false}) {
     try {
       _auth
           .signInWithEmailAndPassword(
-              email: emailParam, password: passwordParam)
+              email: email.text, password: password.text)
           .then((value) {
-        var userEmail = value.user;
-        print('Successfully signed user with email: $userEmail');
-        Firestore().findUserByEmail(emailParam).then((_userModel) {
+        Firestore().findUserByEmail(email.text).then((_userModel) {
           role.text = _userModel.role;
           email.text = _userModel.email;
           name.text = _userModel.name ?? '';
           surname.text = _userModel.surname ?? '';
           position.text = _userModel.position ?? '';
           phone.text = _userModel.phone ?? '';
+          logedIn.value = true;
+          print('gotohome: $goToHome');
+          if (goToHome) {
+            print('if true');
+            Get.toNamed(Routes.HOME);
+          }
         });
       });
     } on FirebaseAuthException catch (e) {
@@ -102,13 +124,16 @@ class AuthController extends GetxController {
     }
   }
 
-  signOut() async {
+  logout() async {
     await _auth.signOut();
     role.text = '';
     email.text = '';
     name.text = '';
     surname.text = '';
+    password.text = '';
+    passwordConfirm.text = '';
     position.text = '';
     phone.text = '';
+    logedIn.value = false;
   }
 }

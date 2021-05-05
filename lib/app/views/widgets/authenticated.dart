@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/auth_controller.dart';
+import 'package:inkubox_app/app/routes/app_routing.dart';
 
 class Authenticated extends GetWidget<AuthController> {
   final Widget child;
@@ -10,7 +11,7 @@ class Authenticated extends GetWidget<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    return controller.signedIn
+    return Obx(() => controller.logedIn.value
         ? controller.role.text == role
             ? child
             : Directionality(
@@ -22,14 +23,20 @@ class Authenticated extends GetWidget<AuthController> {
                   ),
                 ),
               )
-        : Directionality(
-            textDirection: TextDirection.ltr,
-            child: Center(
-              child: Text(
-                'You are not signed in!',
+        : Column(
+            children: [
+              Text(
+                'You are not loged in!',
                 style: TextStyle(color: Colors.red, fontSize: 20),
               ),
-            ),
-          );
+              TextButton(
+                  onPressed: () => Get.toNamed(Routes.LOGIN),
+                  child: Text('Login')),
+              Text('or'),
+              TextButton(
+                  onPressed: () => Get.toNamed(Routes.SIGNUP),
+                  child: Text('Sign Up')),
+            ],
+          ));
   }
 }

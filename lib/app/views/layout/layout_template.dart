@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inkubox_app/app/views/layout/menu.dart';
+import 'package:inkubox_app/app/views/layout/menu/menu.dart';
 import 'package:inkubox_app/app/views/widgets/check_version.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const MAIN_BACKGROUND_COLOR = Colors.white;
+
 Map<int, Color> primaryColorMap = {
   50: Color.fromRGBO(242, 109, 83, .1),
   100: Color.fromRGBO(242, 109, 83, .2),

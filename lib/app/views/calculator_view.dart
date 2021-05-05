@@ -8,7 +8,6 @@ class CalculatorView extends GetWidget<CalculatorController> {
   @override
   Widget build(BuildContext context) {
     return Authenticated(
-      role: 'admin',
       child: FittedBox(
         fit: BoxFit.contain,
         child: Container(
