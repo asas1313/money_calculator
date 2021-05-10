@@ -9,6 +9,7 @@ import 'package:inkubox_app/app/controllers/auth_controller.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/home_view.dart';
 import 'package:inkubox_app/app/views/layout/layout_template.dart';
+import 'package:inkubox_app/app/views/styles/colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,8 +40,12 @@ class App extends StatelessWidget {
             return GetMaterialApp(
               title: 'InkuboX app',
               theme: ThemeData(
-                textTheme: GoogleFonts.sairaTextTheme(Get.textTheme),
-              ),
+                  textTheme: GoogleFonts.sairaTextTheme(Get.textTheme),
+                  primaryColor: PRIMARY_COLOR,
+                  elevatedButtonTheme: ElevatedButtonThemeData(
+                      style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR)),
+                  textButtonTheme: TextButtonThemeData(
+                      style: TextButton.styleFrom(primary: PRIMARY_COLOR))),
               home: LayoutTemplate(child: HomeView()),
               getPages: AppRouting.appPages,
             );

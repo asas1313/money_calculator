@@ -8,6 +8,13 @@ const textStyleMenu = TextStyle(
   letterSpacing: 1,
 );
 
+const textStyleDrawer = TextStyle(
+  color: Colors.white,
+  fontSize: 24,
+  fontWeight: FontWeight.w900,
+  letterSpacing: 1,
+);
+
 class TextStyles {
   static TextAlign getTextAlignment(SizingInformation sizingInformation) {
     return sizingInformation.deviceScreenType == DeviceScreenType.desktop

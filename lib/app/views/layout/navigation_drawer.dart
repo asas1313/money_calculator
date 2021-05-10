@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inkubox_app/app/controllers/auth_controller.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/styles/styles.dart';
 
-class NavigationDrawer extends StatelessWidget {
+import 'menu/login_column.dart';
+import 'menu/logout_column.dart';
+
+class NavigationDrawer extends GetWidget<AuthController> {
   const NavigationDrawer({Key? key}) : super(key: key);
 
   @override
@@ -17,36 +21,41 @@ class NavigationDrawer extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: 15),
+                SizedBox(height: 15),
                 TextButton(
                   onPressed: () {
                     Get.toNamed(Routes.HOME);
                   },
-                  child: Logo(),
-                ),
-                SizedBox(width: 15),
-                TextButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.PROFILE);
-                  },
                   child: Text(
-                    'Profile',
-                    style: textStyleMenu,
+                    'Home',
+                    style: textStyleDrawer,
                   ),
                 ),
-                SizedBox(width: 27),
+                SizedBox(height: 35),
                 TextButton(
                   onPressed: () {
                     Get.toNamed(Routes.CALCULATOR);
                   },
                   child: Text(
                     'Calculator',
-                    style: textStyleMenu,
+                    style: textStyleDrawer,
                   ),
                 ),
               ],
             ),
           ),
+          Spacer(),
+          Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Obx(() => Container(
+                      padding: EdgeInsets.only(bottom: 25),
+                      child: controller.logedIn.value
+                          ? LogoutColumn()
+                          : LoginColumn(),
+                    ))
+              ]),
         ],
       ),
     );

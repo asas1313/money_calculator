@@ -5,30 +5,31 @@ import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/styles/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class LogoutRow extends GetWidget<AuthController> {
+class LogoutColumn extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
-      builder: (context, sizingInformation) => Row(children: [
+      builder: (context, sizingInformation) => Column(children: [
         Obx(() => SizedBox(
-              width: Get.width / 10,
-              child: Text(
-                controller.logedIn.value
-                    ? '${controller.name.text} ${controller.surname.text}'
-                    : 'Not connected!',
-                style: TextStyle(fontSize: 12),
+              width: Get.width,
+              child: Center(
+                child: Text(
+                  controller.logedIn.value
+                      ? '${controller.name.text} ${controller.surname.text}'
+                      : 'Not connected!',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
               ),
             )),
         SizedBox(
-          width: 5,
-          height: 50,
+          height: 15,
         ),
         Container(
           child: controller.role.text == 'admin'
-              ? Row(children: [
+              ? Column(children: [
                   SizedBox(
-                    height: 20,
-                    width: 100,
+                    height: 30,
+                    width: 120,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
                       onPressed: () {
@@ -37,20 +38,19 @@ class LogoutRow extends GetWidget<AuthController> {
                       child: Text(
                         'Admin pannel',
                         style: TextStyle(
-                            fontSize: 12, color: MAIN_BACKGROUND_COLOR),
+                            fontSize: 16, color: MAIN_BACKGROUND_COLOR),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: 10,
-                    height: 50,
+                    height: 15,
                   ),
                 ])
               : Container(width: 0, height: 0),
         ),
         SizedBox(
-          height: 20,
-          width: 65,
+          height: 30,
+          width: 120,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
             onPressed: () {
@@ -58,22 +58,22 @@ class LogoutRow extends GetWidget<AuthController> {
             },
             child: Text(
               'Logout',
-              style: TextStyle(fontSize: 12, color: MAIN_BACKGROUND_COLOR),
+              style: TextStyle(fontSize: 16, color: MAIN_BACKGROUND_COLOR),
             ),
           ),
         ),
         SizedBox(
-          width: 10,
+          height: 10,
         ),
         SizedBox(
-          height: 20,
-          width: 95,
+          height: 30,
+          width: 120,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
             onPressed: () => Get.toNamed(Routes.PROFILE),
             child: Text(
               'Edit Profile',
-              style: TextStyle(fontSize: 12, color: MAIN_BACKGROUND_COLOR),
+              style: TextStyle(fontSize: 16, color: MAIN_BACKGROUND_COLOR),
             ),
           ),
         ),

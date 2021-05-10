@@ -73,4 +73,44 @@ class Firestore {
       rethrow;
     }
   }
+
+  Future<void> updateUserName({required String email, required String name}) {
+    return _firestore
+        .collection('users')
+        .doc(email)
+        .update({'name': name})
+        .then((value) => print(' -= User' 's $email name updated to $name'))
+        .catchError((error) => print('Failed to change user' 's name: $error'));
+  }
+
+  Future<void> updateUserSurname(
+      {required String email, required String surname}) {
+    return _firestore
+        .collection('users')
+        .doc(email)
+        .update({'surname': surname})
+        .then(
+            (value) => print(' -= User' 's $email surname updated to $surname'))
+        .catchError((error) => print('Failed to change user' 's name: $error'));
+  }
+
+  Future<void> updateUserPosition(
+      {required String email, required String position}) {
+    return _firestore
+        .collection('users')
+        .doc(email)
+        .update({'position': position})
+        .then((value) =>
+            print(' -= User' 's $email position updated to $position'))
+        .catchError((error) => print('Failed to change user' 's name: $error'));
+  }
+
+  Future<void> updateUserPhone({required String email, required String phone}) {
+    return _firestore
+        .collection('users')
+        .doc(email)
+        .update({'phone': phone})
+        .then((value) => print(' -= User' 's $email phone updated to $phone'))
+        .catchError((error) => print('Failed to change user' 's name: $error'));
+  }
 }

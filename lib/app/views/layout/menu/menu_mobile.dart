@@ -10,7 +10,7 @@ class MenuMobile extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            color: Color.fromRGBO(0, 0, 0, 0.25),
+            color: Colors.white,
             padding: const EdgeInsets.all(32),
             child: Column(
               children: [
@@ -21,7 +21,7 @@ class MenuMobile extends StatelessWidget {
                     IconButton(
                       icon: Icon(
                         Icons.menu,
-                        color: Colors.white,
+                        color: SECONDARY_COLOR,
                       ),
                       onPressed: () {
                         Scaffold.of(context).openDrawer();
