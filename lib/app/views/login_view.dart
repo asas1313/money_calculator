@@ -12,8 +12,8 @@ class LoginView extends GetWidget<AuthController> {
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       var textAlignment = TextStyles.getTextAlignment(sizingInformation);
       var titleSize = TextStyles.getTitleSize(sizingInformation);
-      return Scaffold(
-        body: Center(
+      return Material(
+        child: Center(
           child: Container(
               width: 600,
               height: 400,

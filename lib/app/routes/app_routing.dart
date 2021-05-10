@@ -4,7 +4,7 @@ import 'package:inkubox_app/app/controllers/bindings/calculator_binding.dart';
 import 'package:inkubox_app/app/controllers/bindings/profile_binding.dart';
 import 'package:inkubox_app/app/views/calculator_view.dart';
 import 'package:inkubox_app/app/views/home_view.dart';
-import 'package:inkubox_app/app/views/layout/admin_dashboard_view.dart';
+import 'package:inkubox_app/app/views/admin_dashboard_view.dart';
 import 'package:inkubox_app/app/views/layout/layout_template.dart';
 import 'package:inkubox_app/app/views/login_view.dart';
 import 'package:inkubox_app/app/views/profile_view.dart';

@@ -9,8 +9,8 @@ class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
 
   final role = TextEditingController();
-  final email = TextEditingController();
-  final name = TextEditingController();
+  final email = TextEditingController(text: '');
+  final name = TextEditingController(text: '');
   final surname = TextEditingController();
   final password = TextEditingController();
   final passwordConfirm = TextEditingController();
@@ -87,6 +87,11 @@ class AuthController extends GetxController {
   }
 
   login({bool goToHome = false}) {
+    if (email.text.isEmpty || password.text.isEmpty) {
+      Get.snackbar('Message', 'Enter email and password.');
+      return;
+    }
+
     try {
       _auth
           .signInWithEmailAndPassword(
@@ -117,6 +122,15 @@ class AuthController extends GetxController {
         Get.snackbar(
             'Error', 'Provided password is invalid for the given email.',
             backgroundColor: Colors.red);
+      } else if (e.code == 'user-not-found') {
+        print(
+            'There is no user record corresponding to this identifier. The user may have been deleted.');
+        Get.snackbar('Error',
+            'There is no user record corresponding to this identifier. The user may have been deleted.',
+            backgroundColor: Colors.red);
+      } else if (e.code == 'invalid-email') {
+        print('The email address is badly formatted.');
+        Get.snackbar('Message', 'The email address is badly formatted.');
       }
     } catch (e) {
       Get.snackbar('Error', e.toString(), backgroundColor: Colors.red);

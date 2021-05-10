@@ -4,57 +4,58 @@ import 'package:inkubox_app/app/controllers/auth_controller.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/styles/colors.dart';
 
-class LoginRow extends GetWidget<AuthController> {
+class LoginColumn extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
+    return Column(children: [
       SizedBox(
-        width: Get.width / 8,
+        width: Get.width,
         child: TextFormField(
           controller: controller.email,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: 'Email',
             border: InputBorder.none,
-            labelStyle: TextStyle(fontSize: 12),
+            labelStyle: TextStyle(fontSize: 20, color: Colors.white),
           ),
         ),
       ),
-      SizedBox(width: 5),
+      SizedBox(height: 5),
       SizedBox(
-        width: Get.width / 8,
+        width: Get.width,
         child: TextFormField(
           controller: controller.password,
           obscureText: true,
           decoration: InputDecoration(
             labelText: 'Password',
             border: InputBorder.none,
-            labelStyle: TextStyle(fontSize: 12),
+            labelStyle: TextStyle(fontSize: 20, color: Colors.white),
           ),
         ),
       ),
-      SizedBox(width: 5),
+      SizedBox(height: 5),
       SizedBox(
-        height: 20,
-        width: 50,
+        height: 30,
+        width: 80,
         child: ElevatedButton(
             onPressed: () {
               controller.login();
             },
             child: Text(
               'Login',
-              style: TextStyle(fontSize: 12, color: MAIN_BACKGROUND_COLOR),
+              style: TextStyle(fontSize: 20, color: MAIN_BACKGROUND_COLOR),
             )),
       ),
-      SizedBox(width: 5),
+      SizedBox(height: 5),
       TextButton(
           onPressed: () {
             Get.toNamed(Routes.SIGNUP);
           },
           child: Text(
             'Sign Up',
-            style: TextStyle(fontSize: 12),
+            style: TextStyle(fontSize: 20),
           )),
+      SizedBox(height: 25),
     ]);
   }
 }

@@ -7,12 +7,12 @@ class Authenticated extends GetWidget<AuthController> {
   final Widget child;
   final String role;
 
-  Authenticated({required this.child, this.role = 'user'});
+  Authenticated({required this.child, this.role = 'any'});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => controller.logedIn.value
-        ? controller.role.text == role
+        ? (controller.role.text == role || role == 'any')
             ? child
             : Directionality(
                 textDirection: TextDirection.ltr,
