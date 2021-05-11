@@ -5,6 +5,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'content_desktop.dart';
 import 'content_mobile.dart';
+import 'footer.dart';
 import 'navigation_drawer.dart';
 
 class LayoutTemplate extends StatelessWidget {
@@ -33,7 +34,8 @@ class LayoutTemplate extends StatelessWidget {
                     child: child,
                   ),
                 ),
-              )
+              ),
+              Footer(),
             ],
           ),
         ),

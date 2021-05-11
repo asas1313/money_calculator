@@ -31,6 +31,7 @@ class LoginColumn extends GetWidget<AuthController> {
             border: InputBorder.none,
             labelStyle: TextStyle(fontSize: 20, color: Colors.white),
           ),
+          onFieldSubmitted: (value) => controller.login(goToHome: true),
         ),
       ),
       SizedBox(height: 5),

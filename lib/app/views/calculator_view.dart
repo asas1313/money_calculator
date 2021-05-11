@@ -39,7 +39,7 @@ class CalculatorView extends GetWidget<CalculatorController> {
                       onEditingComplete: () => controller.calculate(),
                     ),
                     SizedBox(height: 25),
-                    SelectableText('Calculated sum (EUR): '),
+                    SelectableText('Calculated sum (EUR):'),
                     TextFormField(
                       controller: controller.responseController,
                       decoration: InputDecoration(

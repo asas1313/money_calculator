@@ -31,6 +31,7 @@ class LoginRow extends GetWidget<AuthController> {
             border: InputBorder.none,
             labelStyle: TextStyle(fontSize: 12),
           ),
+          onFieldSubmitted: (value) => controller.login(goToHome: true),
         ),
       ),
       SizedBox(width: 5),
