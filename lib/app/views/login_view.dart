@@ -42,6 +42,8 @@ class LoginView extends GetWidget<AuthController> {
                       controller: controller.password,
                       obscureText: true,
                       decoration: InputDecoration(labelText: 'Password'),
+                      onFieldSubmitted: (value) =>
+                          controller.login(goToHome: true),
                     ),
                     SizedBox(
                       height: 40,
