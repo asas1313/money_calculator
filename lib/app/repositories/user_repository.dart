@@ -10,7 +10,7 @@ class Firestore {
         'uid': user.id,
         'role': user.role,
         'email': user.email,
-        'sisplayName': user.displayName,
+        'displayName': user.displayName,
         'position': user.position,
         'phone': user.phone,
       });

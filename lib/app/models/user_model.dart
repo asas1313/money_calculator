@@ -28,7 +28,7 @@ class UserModel {
     email = documentSnapshot.data()!['email'];
     role = documentSnapshot.data()!['role'];
     displayName = documentSnapshot.data()!.containsKey('displayName')
-        ? documentSnapshot.data()!['DisplayName']
+        ? documentSnapshot.data()!['displayName']
         : '';
     position = documentSnapshot.data()!.containsKey('position')
         ? documentSnapshot.data()!['position']
