@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/auth_controller.dart';
 import 'package:inkubox_app/app/utils/firestore.dart';
 
-class ProfileController extends GetxController {
+class UserController extends GetxController {
   final role = ''.obs;
   final email = TextEditingController(text: '');
   final displayName = TextEditingController(text: '');
@@ -19,19 +18,6 @@ class ProfileController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    final _email = Get.find<AuthController>().email.text;
-    firestore.findUserByEmail(_email).then((model) {
-      role.value = model.role;
-      email.text = model.email;
-      displayName.text = model.displayName ?? '';
-      position.text = model.position ?? '';
-      phone.text = model.phone ?? '';
-      enabled.value = model.enabled;
-      avatarUrl.value = model.avatarUrl ?? '';
-    });
-    displayName.addListener(_updateDisplayName);
-    position.addListener(_updatePosition);
-    phone.addListener(_updatePhone);
   }
 
   @mustCallSuper
@@ -39,6 +25,27 @@ class ProfileController extends GetxController {
   void onClose() {
     //
     super.onClose();
+  }
+
+  bool loadController(String emailToLoad) {
+    try {
+      firestore.findUserByEmail(emailToLoad).then((model) {
+        role.value = model.role;
+        email.text = model.email;
+        displayName.text = model.displayName ?? '';
+        position.text = model.position ?? '';
+        phone.text = model.phone ?? '';
+        enabled.value = model.enabled;
+        avatarUrl.value = model.avatarUrl ?? '';
+      });
+      displayName.addListener(_updateDisplayName);
+      position.addListener(_updatePosition);
+      phone.addListener(_updatePhone);
+      return true;
+    } catch (e) {
+      print('User' 's information loading error! \n $e');
+      return false;
+    }
   }
 
   _updateDisplayName() async {

@@ -47,13 +47,8 @@ class SignupView extends GetWidget<AuthController> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: controller.name,
-                  decoration: InputDecoration(labelText: 'Name'),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: controller.surname,
-                  decoration: InputDecoration(labelText: 'Surname'),
+                  controller: controller.displayName,
+                  decoration: InputDecoration(labelText: 'Display name'),
                 ),
                 SizedBox(height: 20),
                 TextFormField(

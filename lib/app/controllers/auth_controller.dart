@@ -9,10 +9,9 @@ class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
 
   final role = TextEditingController();
-  final email = TextEditingController(text: '');
-  final name = TextEditingController(text: '');
-  final surname = TextEditingController();
-  final password = TextEditingController();
+  final email = TextEditingController(text: 'andrius@modernit.space');
+  final displayName = TextEditingController(text: '');
+  final password = TextEditingController(text: 'asasas');
   final passwordConfirm = TextEditingController();
   final position = TextEditingController();
   final phone = TextEditingController();
@@ -31,7 +30,7 @@ class AuthController extends GetxController {
         print('User is currently loged out!');
         logedIn.value = false;
       } else {
-        print('User is loged in!');
+        print('User ${user.email} is loged in!');
       }
     });
   }
@@ -62,8 +61,7 @@ class AuthController extends GetxController {
         id: _userCredential.user?.uid,
         role: role.text.isEmpty ? 'user' : role.text,
         email: email.text,
-        name: name.text,
-        surname: surname.text,
+        displayName: displayName.text,
         position: position.text,
         phone: phone.text,
       );
@@ -100,8 +98,7 @@ class AuthController extends GetxController {
         Firestore().findUserByEmail(email.text).then((_userModel) {
           role.text = _userModel.role;
           email.text = _userModel.email;
-          name.text = _userModel.name ?? '';
-          surname.text = _userModel.surname ?? '';
+          displayName.text = _userModel.displayName ?? '';
           position.text = _userModel.position ?? '';
           phone.text = _userModel.phone ?? '';
           logedIn.value = true;
@@ -142,8 +139,7 @@ class AuthController extends GetxController {
     await _auth.signOut();
     role.text = '';
     email.text = '';
-    name.text = '';
-    surname.text = '';
+    displayName.text = '';
     password.text = '';
     passwordConfirm.text = '';
     position.text = '';

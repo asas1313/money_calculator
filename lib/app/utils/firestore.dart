@@ -35,8 +35,7 @@ class Firestore {
         'uid': user.id,
         'role': user.role,
         'email': user.email,
-        'name': user.name,
-        'surname': user.surname,
+        'sisplayName': user.displayName,
         'position': user.position,
         'phone': user.phone,
       });
@@ -74,23 +73,14 @@ class Firestore {
     }
   }
 
-  Future<void> updateUserName({required String email, required String name}) {
+  Future<void> updateUserDisplayName(
+      {required String email, required String displayName}) {
     return _firestore
         .collection('users')
         .doc(email)
-        .update({'name': name})
-        .then((value) => print(' -= User' 's $email name updated to $name'))
-        .catchError((error) => print('Failed to change user' 's name: $error'));
-  }
-
-  Future<void> updateUserSurname(
-      {required String email, required String surname}) {
-    return _firestore
-        .collection('users')
-        .doc(email)
-        .update({'surname': surname})
-        .then(
-            (value) => print(' -= User' 's $email surname updated to $surname'))
+        .update({'displayName': displayName})
+        .then((value) =>
+            print(' -= User' 's $email name updated to $displayName'))
         .catchError((error) => print('Failed to change user' 's name: $error'));
   }
 
@@ -112,5 +102,26 @@ class Firestore {
         .update({'phone': phone})
         .then((value) => print(' -= User' 's $email phone updated to $phone'))
         .catchError((error) => print('Failed to change user' 's name: $error'));
+  }
+
+  Future<void> setEnabled({required String email, required bool enabled}) {
+    return _firestore
+        .collection('users')
+        .doc(email)
+        .update({'enabled': enabled})
+        .then(
+            (value) => print(' -= User $email status enabled set to $enabled'))
+        .catchError(
+            (error) => print('Failed to change user' 's status: $error'));
+  }
+
+  Future<void> setAvatar({required String email, required String avatarUrl}) {
+    return _firestore
+        .collection('users')
+        .doc(email)
+        .update({'avatarUrl': avatarUrl})
+        .then((value) => print(' -= User $email avatar set to $avatarUrl'))
+        .catchError(
+            (error) => print('Failed to change user' 's status: $error'));
   }
 }
