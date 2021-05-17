@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/auth_controller.dart';
-import 'package:inkubox_app/app/utils/firestore.dart';
+import 'package:inkubox_app/app/repositories/user_repository.dart';
 
 class ProfileController extends GetxController {
   final role = ''.obs;

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/utils/firestore.dart';
+import 'package:inkubox_app/app/repositories/user_repository.dart';
 
 class UserController extends GetxController {
   final role = ''.obs;
@@ -27,7 +27,7 @@ class UserController extends GetxController {
     super.onClose();
   }
 
-  bool loadController(String emailToLoad) {
+  loadController(String emailToLoad) {
     try {
       firestore.findUserByEmail(emailToLoad).then((model) {
         role.value = model.role;
@@ -41,10 +41,8 @@ class UserController extends GetxController {
       displayName.addListener(_updateDisplayName);
       position.addListener(_updatePosition);
       phone.addListener(_updatePhone);
-      return true;
     } catch (e) {
       print('User' 's information loading error! \n $e');
-      return false;
     }
   }
 

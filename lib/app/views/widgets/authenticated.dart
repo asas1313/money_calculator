@@ -12,18 +12,26 @@ class Authenticated extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => controller.logedIn.value
-        ? (controller.role.text == role || role == 'any')
-            ? child
-            : Directionality(
-                textDirection: TextDirection.ltr,
-                child: Center(
-                  child: Text(
-                    'Unauthorized access!',
-                    style: TextStyle(color: Colors.red, fontSize: 20),
-                  ),
+        ? (controller.enabled.value)
+            ? (controller.role.text == role || role == 'any')
+                ? child
+                : Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Center(
+                      child: Text(
+                        'Unauthorized access!',
+                        style: TextStyle(color: Colors.red, fontSize: 20),
+                      ),
+                    ),
+                  )
+            : Center(
+                child: Text(
+                  'Your account is not enabled by system administrator!',
+                  style: TextStyle(color: Colors.red, fontSize: 20),
                 ),
               )
         : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'You are not loged in!',

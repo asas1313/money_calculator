@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/models/user_model.dart';
-import 'package:inkubox_app/app/utils/firestore.dart';
+import 'package:inkubox_app/app/repositories/user_repository.dart';
 import 'package:inkubox_app/app/views/widgets/user_card.dart';
 
 class AllUsersController extends GetxController {

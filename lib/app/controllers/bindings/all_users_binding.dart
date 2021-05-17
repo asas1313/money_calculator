@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../all_userts_controller.dart';
+import '../all_users_controller.dart';
 
 class AllUsersBinding implements Bindings {
   @override
