@@ -9,9 +9,9 @@ class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
 
   final role = TextEditingController();
-  final email = TextEditingController(text: 'andrius@modernit.space');
+  final email = TextEditingController(text: '');
   final displayName = TextEditingController(text: '');
-  final password = TextEditingController(text: 'asasas');
+  final password = TextEditingController(text: '');
   final passwordConfirm = TextEditingController();
   final position = TextEditingController();
   final phone = TextEditingController();
