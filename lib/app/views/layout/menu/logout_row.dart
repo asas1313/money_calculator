@@ -14,7 +14,7 @@ class LogoutRow extends GetWidget<AuthController> {
               width: Get.width / 10,
               child: Text(
                 controller.logedIn.value
-                    ? '${controller.name.text} ${controller.surname.text}'
+                    ? controller.displayName.text
                     : 'Not connected!',
                 style: TextStyle(fontSize: 12),
               ),

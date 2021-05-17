@@ -5,19 +5,21 @@ class UserModel {
   String? id;
   String role = '';
   String email = '';
-  String? name;
-  String? surname;
+  String? displayName;
   String? position;
   String? phone;
+  bool enabled = false;
+  String? avatarUrl;
 
   UserModel({
     this.id,
     required this.role,
     required this.email,
-    this.name,
-    this.surname,
+    this.displayName,
     this.position,
     this.phone,
+    this.enabled = false,
+    this.avatarUrl,
   });
 
   UserModel.fromDocumentSnapshot(
@@ -25,17 +27,20 @@ class UserModel {
     id = documentSnapshot.id;
     email = documentSnapshot.data()!['email'];
     role = documentSnapshot.data()!['role'];
-    name = documentSnapshot.data()!.containsKey('name')
-        ? documentSnapshot.data()!['name']
-        : '';
-    surname = documentSnapshot.data()!.containsKey('surname')
-        ? documentSnapshot.data()!['surname']
+    displayName = documentSnapshot.data()!.containsKey('displayName')
+        ? documentSnapshot.data()!['DisplayName']
         : '';
     position = documentSnapshot.data()!.containsKey('position')
         ? documentSnapshot.data()!['position']
         : '';
     phone = documentSnapshot.data()!.containsKey('phone')
         ? documentSnapshot.data()!['phone']
+        : '';
+    enabled = documentSnapshot.data()!.containsKey('enabled')
+        ? documentSnapshot.data()!['enabled']
+        : false;
+    avatarUrl = documentSnapshot.data()!.containsKey('avatarUrl')
+        ? documentSnapshot.data()!['avatarUrl']
         : '';
   }
 }

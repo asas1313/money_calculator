@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/profile_controller.dart';
 import 'package:inkubox_app/app/views/widgets/authenticated.dart';
+import 'package:inkubox_app/app/views/widgets/avatar.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ProfileView extends GetWidget<ProfileController> {
@@ -21,6 +22,11 @@ class ProfileView extends GetWidget<ProfileController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(height: 15),
+                    Avatar(
+                      avatarUrl: controller.avatarUrl.value,
+                      onTap: _showSnackbar,
+                    ),
+                    SizedBox(height: 15),
                     TextFormField(
                       controller: controller.email,
                       enabled: false,
@@ -30,16 +36,9 @@ class ProfileView extends GetWidget<ProfileController> {
                     ),
                     SizedBox(height: 15),
                     TextFormField(
-                      controller: controller.name,
+                      controller: controller.displayName,
                       decoration: InputDecoration(
-                          labelText: 'Name',
-                          hintStyle: TextStyle(fontWeight: FontWeight.w600)),
-                    ),
-                    SizedBox(height: 15),
-                    TextFormField(
-                      controller: controller.surname,
-                      decoration: InputDecoration(
-                          labelText: 'Surname',
+                          labelText: 'Display name',
                           hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                     ),
                     SizedBox(height: 15),
@@ -62,5 +61,9 @@ class ProfileView extends GetWidget<ProfileController> {
             );
           })),
     );
+  }
+
+  _showSnackbar() {
+    Get.snackbar('Message', 'Avatar clicked', duration: Duration(seconds: 5));
   }
 }
