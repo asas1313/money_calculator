@@ -141,9 +141,9 @@ class AuthController extends GetxController {
   logout() async {
     await _auth.signOut();
     role.text = '';
-    email.text = 'andrius@modernit.space';
+    email.text = '';
     displayName.text = '';
-    password.text = 'asasas';
+    password.text = '';
     passwordConfirm.text = '';
     position.text = '';
     phone.text = '';
