@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/utils/firestore.dart';
+import 'package:inkubox_app/app/repositories/settings_repository.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class AppController extends GetxController {

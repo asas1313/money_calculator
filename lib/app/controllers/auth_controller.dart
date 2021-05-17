@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/models/user_model.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
-import 'package:inkubox_app/app/utils/firestore.dart';
+import 'package:inkubox_app/app/repositories/user_repository.dart';
 
 class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
@@ -15,6 +15,7 @@ class AuthController extends GetxController {
   final passwordConfirm = TextEditingController();
   final position = TextEditingController();
   final phone = TextEditingController();
+  final enabled = false.obs;
 
   var logedIn = false.obs;
 
@@ -64,6 +65,7 @@ class AuthController extends GetxController {
         displayName: displayName.text,
         position: position.text,
         phone: phone.text,
+        enabled: enabled.value,
       );
       if (await Firestore().saveUser(_userModel)) {
         login();
@@ -101,6 +103,7 @@ class AuthController extends GetxController {
           displayName.text = _userModel.displayName ?? '';
           position.text = _userModel.position ?? '';
           phone.text = _userModel.phone ?? '';
+          enabled.value = _userModel.enabled;
           logedIn.value = true;
           print('gotohome: $goToHome');
           if (goToHome) {
@@ -138,12 +141,13 @@ class AuthController extends GetxController {
   logout() async {
     await _auth.signOut();
     role.text = '';
-    email.text = '';
+    email.text = 'andrius@modernit.space';
     displayName.text = '';
-    password.text = '';
+    password.text = 'asasas';
     passwordConfirm.text = '';
     position.text = '';
     phone.text = '';
     logedIn.value = false;
+    enabled.value = false;
   }
 }

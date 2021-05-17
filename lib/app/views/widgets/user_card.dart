@@ -22,13 +22,15 @@ class UserCard extends StatelessWidget {
                 width: Get.width / 2,
                 child: Text(model.email),
               ),
-              subtitle: Text(model.displayName ?? '<empty>'),
+              subtitle: Text(controller.displayName.text.isEmpty
+                  ? '<empty>'
+                  : controller.displayName.text),
               leading: Container(
                 width: 50,
                 height: 50,
-                child: Avatar(
-                  avatarUrl: model.avatarUrl,
-                ),
+                child: Obx(() => Avatar(
+                      avatarUrl: controller.avatarUrl.value,
+                    )),
               ),
               trailing: Obx(() => Icon(
                   controller.enabled.value ? Icons.edit : Icons.edit_off)))),

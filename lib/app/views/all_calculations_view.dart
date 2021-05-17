@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/all_users_controller.dart';
-import 'package:inkubox_app/app/views/widgets/authenticated.dart';
-import 'package:inkubox_app/app/views/widgets/user_card.dart';
+import 'package:inkubox_app/app/controllers/all_calculations_controller.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class AllUsersView extends GetWidget<AllUsersController> {
+import 'widgets/authenticated.dart';
+import 'widgets/calculation_card.dart';
+
+class AllCalculationsView extends GetWidget<AllCalculationsController> {
   @override
   Widget build(BuildContext context) {
     return Authenticated(
@@ -20,13 +21,12 @@ class AllUsersView extends GetWidget<AllUsersController> {
             return Obx(() => Container(
                   width: width,
                   height: 600,
-                  child: ListView.separated(
-                      separatorBuilder: (BuildContext context, int index) =>
-                          Divider(),
+                  child: ListView.builder(
                       padding: EdgeInsets.all(padding),
-                      itemCount: controller.users.length,
+                      itemCount: controller.calculations.length,
                       itemBuilder: (context, index) {
-                        return UserCard(model: controller.users[index]);
+                        return CalculationCard(
+                            model: controller.calculations[index]);
                       }),
                 ));
           },
