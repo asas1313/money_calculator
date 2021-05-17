@@ -16,24 +16,25 @@ class UserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Card(
-          child: ListTile(
-              onTap: () => _editCard(),
-              title: SizedBox(
-                width: Get.width / 2,
-                child: Text(model.email),
+        child: Obx(() => ListTile(
+            onTap: () => _editCard(),
+            title: SizedBox(
+              width: Get.width / 2,
+              child: Text(model.email),
+            ),
+            subtitle: Text(controller.displayName.text.isEmpty
+                ? '<empty>'
+                : controller.displayName.text),
+            leading: Container(
+              width: 50,
+              height: 50,
+              child: Avatar(
+                avatarUrl: controller.avatarUrl.value,
               ),
-              subtitle: Text(controller.displayName.text.isEmpty
-                  ? '<empty>'
-                  : controller.displayName.text),
-              leading: Container(
-                width: 50,
-                height: 50,
-                child: Obx(() => Avatar(
-                      avatarUrl: controller.avatarUrl.value,
-                    )),
-              ),
-              trailing: Obx(() => Icon(
-                  controller.enabled.value ? Icons.edit : Icons.edit_off)))),
+            ),
+            trailing:
+                Icon(controller.enabled.value ? Icons.edit : Icons.edit_off))),
+      ),
     );
   }
 
