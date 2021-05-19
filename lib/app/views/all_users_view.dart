@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/all_users_controller.dart';
 import 'package:inkubox_app/app/views/widgets/authenticated.dart';
-import 'package:inkubox_app/app/views/widgets/user_card.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+import 'widgets/profile_card.dart';
 
 class AllUsersView extends GetWidget<AllUsersController> {
   @override
@@ -26,7 +27,7 @@ class AllUsersView extends GetWidget<AllUsersController> {
                       padding: EdgeInsets.all(padding),
                       itemCount: controller.users.length,
                       itemBuilder: (context, index) {
-                        return UserCard(model: controller.users[index]);
+                        return ProfileCard(model: controller.users[index]);
                       }),
                 ));
           },

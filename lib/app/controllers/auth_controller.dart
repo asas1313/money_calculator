@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inkubox_app/app/controllers/user_controller.dart';
 import 'package:inkubox_app/app/models/user_model.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/repositories/user_repository.dart';
@@ -8,14 +9,9 @@ import 'package:inkubox_app/app/repositories/user_repository.dart';
 class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
 
-  final role = TextEditingController();
-  final email = TextEditingController(text: '');
-  final displayName = TextEditingController(text: '');
-  final password = TextEditingController(text: '');
+  final email = TextEditingController(text: 'andrius@modernit.space');
+  final password = TextEditingController(text: 'asasas');
   final passwordConfirm = TextEditingController();
-  final position = TextEditingController();
-  final phone = TextEditingController();
-  final enabled = false.obs;
 
   var logedIn = false.obs;
 
@@ -30,8 +26,11 @@ class AuthController extends GetxController {
       if (user == null) {
         print('User is currently loged out!');
         logedIn.value = false;
+        Get.find<UserController>().clearController();
       } else {
         print('User ${user.email} is loged in!');
+        logedIn.value = true;
+        Get.find<UserController>().loadController(user.email ?? '');
       }
     });
   }
@@ -60,14 +59,10 @@ class AuthController extends GetxController {
           email: email.text, password: password.text);
       var _userModel = UserModel(
         id: _userCredential.user?.uid,
-        role: role.text.isEmpty ? 'user' : role.text,
+        role: 'user',
         email: email.text,
-        displayName: displayName.text,
-        position: position.text,
-        phone: phone.text,
-        enabled: enabled.value,
       );
-      if (await Firestore().saveUser(_userModel)) {
+      if (await UserRepository().saveUser(_userModel)) {
         login();
         Get.back();
       }
@@ -97,20 +92,13 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(
               email: email.text, password: password.text)
           .then((value) {
-        Firestore().findUserByEmail(email.text).then((_userModel) {
-          role.text = _userModel.role;
-          email.text = _userModel.email;
-          displayName.text = _userModel.displayName ?? '';
-          position.text = _userModel.position ?? '';
-          phone.text = _userModel.phone ?? '';
-          enabled.value = _userModel.enabled;
-          logedIn.value = true;
-          print('gotohome: $goToHome');
-          if (goToHome) {
-            print('if true');
-            Get.toNamed(Routes.HOME);
-          }
-        });
+        final _controller = Get.find<UserController>();
+        _controller.loadController(email.text);
+        logedIn.value = true;
+        if (goToHome) {
+          print('if true');
+          Get.toNamed(Routes.HOME);
+        }
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email') {
@@ -140,14 +128,9 @@ class AuthController extends GetxController {
 
   logout() async {
     await _auth.signOut();
-    role.text = '';
-    email.text = '';
-    displayName.text = '';
-    password.text = '';
-    passwordConfirm.text = '';
-    position.text = '';
-    phone.text = '';
+    Get.find<UserController>().clearController();
     logedIn.value = false;
-    enabled.value = false;
+    email.text = 'andrius@modernit.space';
+    password.text = 'asasas';
   }
 }

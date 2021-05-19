@@ -22,7 +22,7 @@ class Routes {
   static const CALCULATOR = '/calculator';
   static const ADMIN_DASHBOARD = '/admin-dashboard';
   static const ADMIN_ALL_USERS = '/admin-all-users';
-  static const ADMIN_ALL_CALCULATIONS = '/admin-all-calculationss';
+  static const ADMIN_ALL_CALCULATIONS = '/admin-all-calculations';
 }
 
 class AppRouting {

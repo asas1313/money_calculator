@@ -47,11 +47,6 @@ class SignupView extends GetWidget<AuthController> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: controller.displayName,
-                  decoration: InputDecoration(labelText: 'Display name'),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
                   controller: controller.password,
                   obscureText: true,
                   decoration: InputDecoration(labelText: 'Password'),
@@ -75,16 +70,6 @@ class SignupView extends GetWidget<AuthController> {
                     }
                     return null;
                   },
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: controller.position,
-                  decoration: InputDecoration(labelText: 'Position'),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: controller.phone,
-                  decoration: InputDecoration(labelText: 'Phone'),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(

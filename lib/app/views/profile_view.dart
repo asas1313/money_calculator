@@ -24,11 +24,11 @@ class ProfileView extends GetWidget<ProfileController> {
                     SizedBox(height: 15),
                     Avatar(
                       avatarUrl: controller.avatarUrl.value,
-                      onTap: _showSnackbar,
+                      onTap: () => controller.setAvatar(),
                     ),
                     SizedBox(height: 15),
                     TextFormField(
-                      controller: controller.email,
+                      initialValue: controller.email,
                       enabled: false,
                       decoration: InputDecoration(
                           labelText: 'Email',
@@ -61,9 +61,5 @@ class ProfileView extends GetWidget<ProfileController> {
             );
           })),
     );
-  }
-
-  _showSnackbar() {
-    Get.snackbar('Message', 'Avatar clicked', duration: Duration(seconds: 5));
   }
 }
