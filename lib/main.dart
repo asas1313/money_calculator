@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inkubox_app/app/controllers/app_controller.dart';
 import 'package:inkubox_app/app/controllers/auth_controller.dart';
+import 'package:inkubox_app/app/controllers/user_controller.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/home_view.dart';
 import 'package:inkubox_app/app/views/layout/layout_template.dart';
@@ -21,6 +22,7 @@ class App extends StatelessWidget {
 
   final authController = Get.put(AuthController());
   final appController = Get.put(AppController());
+  final userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inkubox_app/app/models/user_model.dart';
 
-class Firestore {
-  final _firestore = FirebaseFirestore.instance.collection('users');
+class UserRepository {
+  final _users = FirebaseFirestore.instance.collection('users');
+  final _email = FirebaseFirestore.instance.collection('mail');
 
   Future<bool> saveUser(UserModel user) async {
     try {
-      await _firestore.doc(user.email).set({
+      await _users.doc(user.email).set({
         'uid': user.id,
         'role': user.role,
         'email': user.email,
@@ -14,6 +15,15 @@ class Firestore {
         'position': user.position,
         'phone': user.phone,
       });
+
+      await _email.add({
+        'to': 'hello@inkubox.com',
+        'message': {
+          'subject': 'New user registered in Inkubox App',
+          'html': 'email: ${user.email}',
+        },
+      });
+
       return true;
     } catch (e) {
       print(e);
@@ -24,7 +34,7 @@ class Firestore {
   Future<UserModel> findUserByEmail(String email) async {
     var userModel;
     try {
-      final snapshot = await _firestore.doc(email).get();
+      final snapshot = await _users.doc(email).get();
       userModel = UserModel.fromDocumentSnapshot(documentSnapshot: snapshot);
       print('User from firestore loaded: ' + userModel.toString());
       return userModel;
@@ -35,13 +45,13 @@ class Firestore {
   }
 
   Future<List<UserModel>> getAllUsers() async {
-    var _users = List<UserModel>.empty(growable: true);
+    var _list = List<UserModel>.empty(growable: true);
     try {
-      var _docs = await _firestore.get();
+      var _docs = await _users.get();
       _docs.docs.forEach((element) {
-        _users.add(UserModel.fromDocumentSnapshot(documentSnapshot: element));
+        _list.add(UserModel.fromDocumentSnapshot(documentSnapshot: element));
       });
-      return _users;
+      return _list;
     } catch (e) {
       print(e);
       rethrow;
@@ -50,7 +60,7 @@ class Firestore {
 
   Future<void> updateUserDisplayName(
       {required String email, required String displayName}) {
-    return _firestore
+    return _users
         .doc(email)
         .update({'displayName': displayName})
         .then((value) =>
@@ -60,7 +70,7 @@ class Firestore {
 
   Future<void> updateUserPosition(
       {required String email, required String position}) {
-    return _firestore
+    return _users
         .doc(email)
         .update({'position': position})
         .then((value) =>
@@ -69,7 +79,7 @@ class Firestore {
   }
 
   Future<void> updateUserPhone({required String email, required String phone}) {
-    return _firestore
+    return _users
         .doc(email)
         .update({'phone': phone})
         .then((value) => print(' -= User' 's $email phone updated to $phone'))
@@ -77,7 +87,7 @@ class Firestore {
   }
 
   Future<void> setEnabled({required String email, required bool enabled}) {
-    return _firestore
+    return _users
         .doc(email)
         .update({'enabled': enabled})
         .then(
@@ -87,7 +97,7 @@ class Firestore {
   }
 
   Future<void> setAvatar({required String email, required String avatarUrl}) {
-    return _firestore
+    return _users
         .doc(email)
         .update({'avatarUrl': avatarUrl})
         .then((value) => print(' -= User $email avatar set to $avatarUrl'))

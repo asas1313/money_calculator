@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/auth_controller.dart';
+import 'package:inkubox_app/app/controllers/user_controller.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
 
-class Authenticated extends GetWidget<AuthController> {
+class Authenticated extends GetWidget<UserController> {
   final Widget child;
   final String role;
 
@@ -11,9 +11,9 @@ class Authenticated extends GetWidget<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.logedIn.value
+    return Obx(() => controller.email.isNotEmpty
         ? (controller.enabled.value)
-            ? (controller.role.text == role || role == 'any')
+            ? (controller.role.value == role || role == 'any')
                 ? child
                 : Directionality(
                     textDirection: TextDirection.ltr,

@@ -6,24 +6,22 @@ class CalculationModel {
   late String email;
   late double sumInitial;
   late double sumCalculated;
-  late int timestamp;
+  late DateTime operationTime;
 
   CalculationModel({
     required this.id,
     required this.email,
     required this.sumInitial,
     required this.sumCalculated,
-    required this.timestamp,
+    required this.operationTime,
   });
 
   CalculationModel.fromDocumentSnapshot(
       {@required required DocumentSnapshot documentSnapshot}) {
     id = documentSnapshot.id;
     email = documentSnapshot.data()!['email'];
-    sumInitial =
-        double.tryParse(documentSnapshot.data()!['sum_initial']) ?? 0.0;
-    sumCalculated =
-        double.tryParse(documentSnapshot.data()!['sum_calculated']) ?? 0.0;
-    timestamp = int.tryParse(documentSnapshot.data()!['timestamp']) ?? 0;
+    sumInitial = documentSnapshot.data()!['sum_initial'];
+    sumCalculated = documentSnapshot.data()!['sum_calculated'];
+    operationTime = documentSnapshot.data()!['operationTime'].toDate();
   }
 }
