@@ -33,6 +33,7 @@ class ProfileController extends GetxController {
       phone.text = model.phone ?? '';
       enabled.value = model.enabled;
       avatarUrl.value = model.avatarUrl ?? '';
+      print('model loaded. enabled is ${model.enabled}');
     });
     displayName.addListener(_updateDisplayName);
     position.addListener(_updatePosition);

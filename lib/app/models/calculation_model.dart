@@ -7,6 +7,7 @@ class CalculationModel {
   late double sumInitial;
   late double sumCalculated;
   late DateTime operationTime;
+  late double currencyRate;
 
   CalculationModel({
     required this.id,
@@ -14,6 +15,7 @@ class CalculationModel {
     required this.sumInitial,
     required this.sumCalculated,
     required this.operationTime,
+    required this.currencyRate,
   });
 
   CalculationModel.fromDocumentSnapshot(
@@ -23,5 +25,6 @@ class CalculationModel {
     sumInitial = documentSnapshot.data()!['sum_initial'];
     sumCalculated = documentSnapshot.data()!['sum_calculated'];
     operationTime = documentSnapshot.data()!['operationTime'].toDate();
+    currencyRate = documentSnapshot.data()!['currencyRate'];
   }
 }

@@ -6,10 +6,10 @@ class Footer extends GetWidget<AppController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [SelectableText('Ver.${controller.appVersion.value}')],
-      ),
+      child: Obx(() => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [SelectableText('Ver.${controller.appVersion.value}')],
+          )),
     );
   }
 }

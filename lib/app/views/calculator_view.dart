@@ -14,7 +14,7 @@ class CalculatorView extends GetWidget<CalculatorController> {
         child: ResponsiveBuilder(
           builder: (context, sizingInformation) {
             var width =
-                (sizingInformation.isDesktop) ? Get.width / 5 : Get.width;
+                (sizingInformation.isDesktop) ? Get.width / 1.5 : Get.width;
             return Container(
               width: width,
               height: 600,
@@ -45,6 +45,16 @@ class CalculatorView extends GetWidget<CalculatorController> {
                       decoration: InputDecoration(
                           prefix: Text('\€'),
                           labelText: 'Sum in EUR',
+                          hintStyle: TextStyle(fontWeight: FontWeight.w600)),
+                      enabled: false,
+                    ),
+                    SizedBox(height: 25),
+                    SelectableText('Current USD to EUR rate:'),
+                    TextFormField(
+                      controller: controller.currencyRateController,
+                      decoration: InputDecoration(
+                          prefix: Text('\€'),
+                          labelText: '1 USD in EUR',
                           hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                       enabled: false,
                     ),

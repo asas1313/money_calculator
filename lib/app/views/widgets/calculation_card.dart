@@ -8,7 +8,7 @@ class CalculationCard extends StatelessWidget {
   final controller = CalculatorController();
 
   CalculationCard({required this.model}) {
-    controller.loadController(model.id);
+    controller.loadController(model);
   }
 
   @override
@@ -18,16 +18,18 @@ class CalculationCard extends StatelessWidget {
         child: ListTile(
           onTap: () => _checkCard(),
           title: SizedBox(
-            width: Get.width / 2,
+            width: Get.width / 1.2,
             child: Text(model.email),
           ),
           subtitle: Row(
             children: [
               Text(model.operationTime.toIso8601String()),
               Spacer(),
-              Text('Initial sum: ${model.sumInitial},'),
+              Text('${model.sumInitial}'),
               Spacer(),
-              Text('Calculated sum: ${model.sumCalculated}.')
+              Text('${model.sumCalculated}'),
+              Spacer(),
+              Text('${model.currencyRate}'),
             ],
           ),
         ),
