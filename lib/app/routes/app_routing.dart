@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/bindings/admin_dashboard_binding.dart';
-import 'package:inkubox_app/app/controllers/bindings/all_users_binding%20copy.dart';
+import 'package:inkubox_app/app/controllers/bindings/all_calculation_binding.dart';
 import 'package:inkubox_app/app/controllers/bindings/all_users_binding.dart';
 import 'package:inkubox_app/app/controllers/bindings/calculator_binding.dart';
 import 'package:inkubox_app/app/controllers/bindings/profile_binding.dart';
