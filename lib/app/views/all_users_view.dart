@@ -27,7 +27,7 @@ class AllUsersView extends GetWidget<AllUsersController> {
                       padding: EdgeInsets.all(padding),
                       itemCount: controller.users.length,
                       itemBuilder: (context, index) {
-                        return ProfileCard(model: controller.users[index]);
+                        return ProfileCard(index: index);
                       }),
                 ));
           },
