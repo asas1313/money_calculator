@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/all_users_controller.dart';
-import 'package:inkubox_app/app/models/user_model.dart';
 import 'package:inkubox_app/app/views/widgets/avatar.dart';
 
 class ProfileCard extends GetWidget<AllUsersController> {

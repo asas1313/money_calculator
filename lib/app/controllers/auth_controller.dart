@@ -100,26 +100,26 @@ class AuthController extends GetxController {
           Get.toNamed(Routes.HOME);
         }
       });
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'invalid-email') {
-        print('Provided email address is not valid.');
-        Get.snackbar('Error', 'Provided email address is not valid.',
-            backgroundColor: Colors.red);
-      } else if (e.code == 'wrong-password') {
-        print('Provided password is invalid for the given email.');
-        Get.snackbar(
-            'Error', 'Provided password is invalid for the given email.',
-            backgroundColor: Colors.red);
-      } else if (e.code == 'user-not-found') {
-        print(
-            'There is no user record corresponding to this identifier. The user may have been deleted.');
-        Get.snackbar('Error',
-            'There is no user record corresponding to this identifier. The user may have been deleted.',
-            backgroundColor: Colors.red);
-      } else if (e.code == 'invalid-email') {
-        print('The email address is badly formatted.');
-        Get.snackbar('Message', 'The email address is badly formatted.');
-      }
+      // } on FirebaseAuthException catch (e) {
+      //   if (e.code == 'invalid-email') {
+      //     print('Provided email address is not valid.');
+      //     Get.snackbar('Error', 'Provided email address is not valid.',
+      //         backgroundColor: Colors.red);
+      //   } else if (e.code == 'wrong-password') {
+      //     print('Provided password is invalid for the given email.');
+      //     Get.snackbar(
+      //         'Error', 'Provided password is invalid for the given email.',
+      //         backgroundColor: Colors.red);
+      //   } else if (e.code == 'user-not-found') {
+      //     print(
+      //         'There is no user record corresponding to this identifier. The user may have been deleted.');
+      //     Get.snackbar('Error',
+      //         'There is no user record corresponding to this identifier. The user may have been deleted.',
+      //         backgroundColor: Colors.red);
+      //   } else if (e.code == 'invalid-email') {
+      //     print('The email address is badly formatted.');
+      //     Get.snackbar('Message', 'The email address is badly formatted.');
+      //   }
     } catch (e) {
       Get.snackbar('Error', e.toString(), backgroundColor: Colors.red);
       print(e);
@@ -132,5 +132,72 @@ class AuthController extends GetxController {
     logedIn.value = false;
     email.text = 'andrius@modernit.space';
     password.text = 'asasas';
+  }
+
+  Future<String?> validatePassword(String password) async {
+    var _user = _auth.currentUser;
+    if (_user != null) {
+      var _authCredentials =
+          EmailAuthProvider.credential(email: _user.email!, password: password);
+      try {
+        _user.reauthenticateWithCredential(_authCredentials).then((value) {
+          return value.user == null ? null : 'You are not loggedin!';
+        });
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-mismatch') {
+          return 'The credential given does not correspond to the user.';
+        } else if (e.code == 'user-not-found') {
+          return 'The credential given does not correspond to the user.';
+        } else if (e.code == 'invalid-credential') {
+          return 'The provider' 's credential is not valid.';
+        } else if (e.code == 'invalid-email') {
+          return 'The provider' 's email is not valid.';
+        } else if (e.code == 'wrong-password') {
+          return 'The provided password is not valid.';
+        } else {
+          print(e.toString());
+          return 'Authentication error!';
+        }
+      } catch (e) {
+        print(e.toString());
+        return 'Password check error!';
+      }
+    } else {
+      Get.snackbar('Error', 'You are not logged in!');
+      return 'You are not logged in!';
+    }
+  }
+
+  changePassword({required String password, required String passwordConfirm}) {
+    var _user = _auth.currentUser;
+
+    if (password.isEmpty) {
+      return 'Password must be provided.';
+    }
+    if (password != passwordConfirm) {
+      return 'Passwords do not match.';
+    }
+
+    if (_user != null) {
+      _user
+          .updatePassword(password)
+          .then((value) => print('Password successfully changed.'))
+          .catchError((error) {
+        print('Password could not be changed: \n${error.toString()}');
+      });
+    } else {
+      Get.snackbar('Error', 'You are not logged in!');
+    }
+  }
+
+  void resetPassword() {
+    Get.defaultDialog(
+        title: 'Alert',
+        content: Text('Do You really want to reset your password?'),
+        onCancel: () => Get.back(),
+        onConfirm: () {
+          _auth.sendPasswordResetEmail(email: email.text);
+          Get.back();
+        });
   }
 }

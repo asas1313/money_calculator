@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:inkubox_app/app/repositories/storage_repository.dart';
 import 'package:inkubox_app/app/repositories/user_repository.dart';
 
+import 'auth_controller.dart';
+
 class ProfileController extends GetxController {
   final String email;
 
@@ -12,6 +14,9 @@ class ProfileController extends GetxController {
   final displayName = TextEditingController(text: '');
   final position = TextEditingController(text: '');
   final phone = TextEditingController(text: '');
+  final oldPassword = TextEditingController(text: '');
+  final newPassword = TextEditingController(text: '');
+  final confirmPassword = TextEditingController(text: '');
   final enabled = false.obs;
   final avatarUrl = ''.obs;
 
@@ -78,5 +83,28 @@ class ProfileController extends GetxController {
     //     Get.back();
     //   });
     // }
+  }
+
+  Future<String?> validatePassword() async {
+    var _auth = Get.find<AuthController>();
+    if (oldPassword.text == '') {
+      return 'The password is empty!';
+    }
+    var _retValue = await _auth.validatePassword(oldPassword.text);
+    if (_retValue != null) {
+      return _retValue;
+    }
+    return null;
+  }
+
+  changePassword() {
+    var _auth = Get.find<AuthController>();
+    _auth.changePassword(
+        password: newPassword.text, passwordConfirm: confirmPassword.text);
+    oldPassword.text = '';
+    newPassword.text = '';
+    confirmPassword.text = '';
+    Get.snackbar('Message', 'The new password was saved.',
+        duration: Duration(seconds: 3));
   }
 }

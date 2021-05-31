@@ -55,11 +55,23 @@ class LoginView extends GetWidget<AuthController> {
                     SizedBox(
                       height: 40,
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.SIGNUP);
-                      },
-                      child: Text('Sign Up'),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.SIGNUP);
+                          },
+                          child: Text('Sign Up'),
+                        ),
+                        SizedBox(width: 20),
+                        TextButton(
+                          onPressed: () {
+                            controller.resetPassword();
+                          },
+                          child: Text('Reset password'),
+                        ),
+                      ],
                     ),
                   ])),
         ),
