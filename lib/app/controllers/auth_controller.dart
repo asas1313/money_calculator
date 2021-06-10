@@ -8,7 +8,7 @@ import 'package:inkubox_app/app/repositories/user_repository.dart';
 
 class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
-
+/* TODO delete email and password */
   final email = TextEditingController(text: 'andrius@modernit.space');
   final password = TextEditingController(text: 'asasas');
   final passwordConfirm = TextEditingController();
@@ -130,8 +130,10 @@ class AuthController extends GetxController {
     await _auth.signOut();
     Get.find<UserController>().clearController();
     logedIn.value = false;
+/* TODO delete email and password */
     email.text = 'andrius@modernit.space';
     password.text = 'asasas';
+    Get.offAllNamed(Routes.HOME);
   }
 
   Future<String?> validatePassword(String password) async {

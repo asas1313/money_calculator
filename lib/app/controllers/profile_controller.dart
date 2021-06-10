@@ -24,6 +24,8 @@ class ProfileController extends GetxController {
   final fsInstance = FirebaseFirestore.instance;
   final storage = StorageRepository();
 
+  bool _ready = false;
+
   PickedFile? imageFile;
 
   ProfileController({required this.email});
@@ -39,6 +41,7 @@ class ProfileController extends GetxController {
       enabled.value = model.enabled;
       avatarUrl.value = model.avatarUrl ?? '';
       print('model loaded. enabled is ${model.enabled}');
+      _ready = true;
     });
     displayName.addListener(_updateDisplayName);
     position.addListener(_updatePosition);
@@ -53,21 +56,38 @@ class ProfileController extends GetxController {
   }
 
   _updateDisplayName() async {
-    repository.updateUserDisplayName(
-        email: email, displayName: displayName.text);
+    if (_ready) {
+      repository.updateUserDisplayName(
+          email: email, displayName: displayName.text);
+      Get.snackbar('Information', 'Display name was updated.',
+          backgroundColor: Colors.white);
+    }
   }
 
   _updatePosition() async {
-    repository.updateUserPosition(email: email, position: position.text);
+    if (_ready) {
+      repository.updateUserPosition(email: email, position: position.text);
+      Get.snackbar('Information', 'Possition was updated.',
+          backgroundColor: Colors.white);
+    }
   }
 
   _updatePhone() async {
-    repository.updateUserPhone(email: email, phone: phone.text);
+    if (_ready) {
+      repository.updateUserPhone(email: email, phone: phone.text);
+      Get.snackbar('Information', 'Phone was updated.',
+          backgroundColor: Colors.white);
+    }
   }
 
   changeEnabled() async {
-    enabled.value = !enabled.value;
-    repository.setEnabled(email: email, enabled: enabled.value);
+    if (_ready) {
+      enabled.value = !enabled.value;
+      repository.setEnabled(email: email, enabled: enabled.value);
+      Get.snackbar('Information',
+          'User' 's account enabled was set to ${enabled.value}.',
+          backgroundColor: Colors.white);
+    }
   }
 
   void setAvatar() async {

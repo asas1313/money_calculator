@@ -17,7 +17,8 @@ class UserRepository {
       });
 
       await _email.add({
-        'to': 'hello@inkubox.com',
+        /* TODO change to hello@inkubox.com */
+        'to': 'andrius@modernit.space',
         'message': {
           'subject': 'New user registered in Inkubox App',
           'html': 'email: ${user.email}',
