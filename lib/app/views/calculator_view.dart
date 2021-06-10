@@ -34,10 +34,11 @@ class CalculatorView extends GetWidget<CalculatorController> {
                           TextInputType.numberWithOptions(decimal: true),
                       decoration: InputDecoration(
                           prefix: Text('\$'),
-                          labelText: 'Enter Amount in USD',
+                          labelText: 'Enter Amount in USD and press ENTER',
                           hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                       onEditingComplete: () => controller.calculate(),
                     ),
+                    Text('* Enter sum in USD and press ENTER'),
                     SizedBox(height: 25),
                     SelectableText('Calculated sum (EUR):'),
                     TextFormField(

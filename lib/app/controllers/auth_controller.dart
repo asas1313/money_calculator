@@ -132,6 +132,7 @@ class AuthController extends GetxController {
     logedIn.value = false;
     email.text = '';
     password.text = '';
+    Get.offAllNamed(Routes.HOME);
   }
 
   Future<String?> validatePassword(String password) async {
