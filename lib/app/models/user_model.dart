@@ -5,21 +5,21 @@ class UserModel {
   String? id;
   String role = '';
   String email = '';
-  String? displayName;
-  String? position;
-  String? phone;
+  String displayName = '';
+  String position = '';
+  String phone = '';
   bool enabled = false;
-  String? avatarUrl;
+  String avatarUrl = '';
 
   UserModel({
     this.id,
     required this.role,
     required this.email,
-    this.displayName,
-    this.position,
-    this.phone,
+    this.displayName = '',
+    this.position = '',
+    this.phone = '',
     this.enabled = false,
-    this.avatarUrl,
+    this.avatarUrl = '',
   });
 
   UserModel.fromDocumentSnapshot(
