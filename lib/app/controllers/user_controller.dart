@@ -30,11 +30,11 @@ class UserController extends GetxController {
       _repository.findUserByEmail(emailToLoad).then((model) {
         role.value = model.role;
         email.value = model.email;
-        displayName.value = model.displayName ?? '';
-        position.value = model.position ?? '';
-        phone.value = model.phone ?? '';
+        displayName.value = model.displayName;
+        position.value = model.position;
+        phone.value = model.phone;
         enabled.value = model.enabled;
-        avatarUrl.value = model.avatarUrl ?? '';
+        avatarUrl.value = model.avatarUrl;
       });
     } catch (e) {
       print('User' 's information loading error! \n $e');

@@ -35,11 +35,11 @@ class ProfileController extends GetxController {
     super.onReady();
     repository.findUserByEmail(email).then((model) {
       role.value = model.role;
-      displayName.text = model.displayName ?? '';
-      position.text = model.position ?? '';
-      phone.text = model.phone ?? '';
+      displayName.text = model.displayName;
+      position.text = model.position;
+      phone.text = model.phone;
       enabled.value = model.enabled;
-      avatarUrl.value = model.avatarUrl ?? '';
+      avatarUrl.value = model.avatarUrl;
       print('model loaded. enabled is ${model.enabled}');
       _ready = true;
     });

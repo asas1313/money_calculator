@@ -5,6 +5,8 @@ class UserRepository {
   final _users = FirebaseFirestore.instance.collection('users');
   final _email = FirebaseFirestore.instance.collection('mail');
 
+  get users => _users;
+
   Future<bool> saveUser(UserModel user) async {
     try {
       await _users.doc(user.email).set({

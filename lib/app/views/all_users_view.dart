@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/all_users_controller.dart';
 import 'package:inkubox_app/app/views/widgets/authenticated.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'widgets/profile_card.dart';
+import 'widgets/avatar.dart';
 
 class AllUsersView extends GetWidget<AllUsersController> {
   @override
@@ -15,24 +16,67 @@ class AllUsersView extends GetWidget<AllUsersController> {
         fit: BoxFit.contain,
         child: ResponsiveBuilder(
           builder: (context, sizingInformation) {
-            var padding = (sizingInformation.isMobile) ? 8.0 : 20.0;
             var width =
                 (sizingInformation.isDesktop) ? Get.width / 2 : Get.width;
-            return Obx(() => Container(
-                  width: width,
-                  height: 600,
-                  child: ListView.separated(
-                      separatorBuilder: (BuildContext context, int index) =>
-                          Divider(),
-                      padding: EdgeInsets.all(padding),
-                      itemCount: controller.users.length,
-                      itemBuilder: (context, index) {
-                        return ProfileCard(index: index);
-                      }),
-                ));
+            return Container(
+              width: width,
+              height: 600,
+              child: StreamBuilder<QuerySnapshot>(
+                  stream: controller.firestore.users.snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else
+                      return ListView(
+                        children: snapshot.data!.docs.map((doc) {
+                          return Container(
+                            child: Card(
+                                child: ListTile(
+                                    onTap: () => _changeUserMode(
+                                        doc['email'],
+                                        !(doc.data().containsKey('enabled')
+                                            ? doc.data()['enabled']
+                                            : false)),
+                                    title: SizedBox(
+                                      width: Get.width / 2,
+                                      child: Text(doc['email']),
+                                    ),
+                                    subtitle: Text(
+                                        doc.data().containsKey('displayName') &&
+                                                doc['displayName'] != ''
+                                            ? doc['displayName']
+                                            : '<empty>'),
+                                    leading: Container(
+                                      width: 50,
+                                      height: 50,
+                                      child: Avatar(
+                                        avatarUrl:
+                                            doc.data().containsKey('avararUrl')
+                                                ? doc['avararUrl']
+                                                : '',
+                                      ),
+                                    ),
+                                    trailing: Icon(
+                                      (doc.data().containsKey('enabled')
+                                              ? doc.data()['enabled']
+                                              : false)
+                                          ? Icons.edit
+                                          : Icons.edit_off,
+                                    ))),
+                          );
+                        }).toList(),
+                      );
+                  }),
+            );
           },
         ),
       ),
     );
+  }
+
+  _changeUserMode(String email, bool enabled) {
+    controller.changeUserMode(email, enabled);
   }
 }

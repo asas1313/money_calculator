@@ -16,11 +16,7 @@ class AllCalculationsController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _repository.getAllCalculations().then((value) {
-      _calculations = value;
-      filterredCalculations.value = value;
-      print('-= calculations loaded: ${_calculations.length}. =-');
-    });
+    refreshAll();
     filterGreater.addListener(_applyGreater);
     filterEquals.addListener(_applyEquals);
     filterLess.addListener(_applyLess);
@@ -58,5 +54,13 @@ class AllCalculationsController extends GetxController {
       return element.sumInitial
           .isLowerThan(double.tryParse(filterLess.text) ?? double.maxFinite);
     }).toList();
+  }
+
+  void refreshAll() {
+    _repository.getAllCalculations().then((value) {
+      _calculations = value;
+      filterredCalculations.value = value;
+      print('-= calculations loaded: ${_calculations.length}. =-');
+    });
   }
 }

@@ -9,8 +9,9 @@ import 'package:inkubox_app/app/repositories/user_repository.dart';
 class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
 
-  final email = TextEditingController(text: '');
-  final password = TextEditingController(text: '');
+  /* TODO delete texts */
+  final email = TextEditingController(text: 'andrius@modernit.space');
+  final password = TextEditingController(text: 'asasas');
   final passwordConfirm = TextEditingController();
 
   var logedIn = false.obs;
@@ -130,8 +131,9 @@ class AuthController extends GetxController {
     await _auth.signOut();
     Get.find<UserController>().clearController();
     logedIn.value = false;
-    email.text = '';
-    password.text = '';
+    /* TODO delete texts */
+    email.text = 'andrius@modernit.space';
+    password.text = 'asasas';
     Get.offAllNamed(Routes.HOME);
   }
 

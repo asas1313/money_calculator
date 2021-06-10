@@ -11,17 +11,18 @@ class AdminDashboardView extends GetWidget<AdminDashboardController> {
       role: 'admin',
       child: Container(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          SizedBox(height: 25),
           Text('AdminDashboardView'),
-          Spacer(),
-          TextButton(
+          SizedBox(height: 25),
+          ElevatedButton(
             onPressed: () => Get.toNamed(Routes.ADMIN_ALL_USERS),
             child: Text('Manage users'),
           ),
-          TextButton(
+          SizedBox(height: 15),
+          ElevatedButton(
             onPressed: () => Get.toNamed(Routes.ADMIN_ALL_CALCULATIONS),
             child: Text('Review all calculations'),
           ),
-          Spacer(),
         ]),
       ),
     );

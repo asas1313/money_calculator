@@ -6,7 +6,6 @@ import 'package:inkubox_app/app/views/styles/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'widgets/authenticated.dart';
-import 'widgets/calculation_card.dart';
 
 class AllCalculationsView extends GetWidget<AllCalculationsController> {
   @override
@@ -92,7 +91,12 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                                       ElevatedButton(
                                           onPressed: () =>
                                               controller.clearFilters(),
-                                          child: Text('Clear'))
+                                          child: Text('Clear')),
+                                      Divider(),
+                                      ElevatedButton(
+                                          onPressed: () =>
+                                              controller.refreshAll(),
+                                          child: Text('Refresh'))
                                     ],
                                   ),
                                 ),
@@ -140,9 +144,34 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                                     itemCount:
                                         controller.filterredCalculations.length,
                                     itemBuilder: (context, index) {
-                                      return CalculationCard(
-                                          model: controller
-                                              .filterredCalculations[index]);
+                                      return Card(
+                                        child: ListTile(
+                                          onTap: () => _checkCard(),
+                                          title: SizedBox(
+                                            width: Get.width / 1.2,
+                                            child: Text(controller
+                                                .filterredCalculations[index]
+                                                .email),
+                                          ),
+                                          subtitle: Row(
+                                            children: [
+                                              Text(controller
+                                                  .filterredCalculations[index]
+                                                  .operationTime
+                                                  .toIso8601String()),
+                                              Spacer(),
+                                              Text(
+                                                  '${controller.filterredCalculations[index].sumInitial}'),
+                                              Spacer(),
+                                              Text(
+                                                  '${controller.filterredCalculations[index].sumCalculated}'),
+                                              Spacer(),
+                                              Text(
+                                                  '${controller.filterredCalculations[index].currencyRate}'),
+                                            ],
+                                          ),
+                                        ),
+                                      );
                                     }),
                               )),
                         ],
@@ -156,5 +185,9 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
         ),
       ),
     );
+  }
+
+  _checkCard() {
+    Get.snackbar('Message', 'Row checked');
   }
 }

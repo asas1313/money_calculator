@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/profile_controller.dart';
@@ -53,7 +55,9 @@ class ProfileView extends GetWidget<ProfileController> {
                       labelText: 'Phone',
                       hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 10),
+                Text('* Edited data is saved automatically.'),
+                SizedBox(height: 35),
                 TextFormField(
                   controller: controller.oldPassword,
                   obscureText: true,
