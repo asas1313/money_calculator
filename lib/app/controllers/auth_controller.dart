@@ -8,6 +8,7 @@ import 'package:inkubox_app/app/repositories/user_repository.dart';
 
 class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
+
   final email = TextEditingController(text: '');
   final password = TextEditingController(text: '');
   final passwordConfirm = TextEditingController();
