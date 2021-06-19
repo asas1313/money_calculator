@@ -16,7 +16,7 @@ class LoginColumn extends GetWidget<AuthController> {
           decoration: InputDecoration(
             labelText: 'Email',
             border: InputBorder.none,
-            labelStyle: TextStyle(fontSize: 20, color: Colors.white),
+            labelStyle: TextStyle(fontSize: 18, color: Colors.white),
           ),
         ),
       ),
@@ -29,7 +29,7 @@ class LoginColumn extends GetWidget<AuthController> {
           decoration: InputDecoration(
             labelText: 'Password',
             border: InputBorder.none,
-            labelStyle: TextStyle(fontSize: 20, color: Colors.white),
+            labelStyle: TextStyle(fontSize: 18, color: Colors.white),
           ),
           onFieldSubmitted: (value) => controller.login(goToHome: true),
         ),
@@ -37,14 +37,14 @@ class LoginColumn extends GetWidget<AuthController> {
       SizedBox(height: 5),
       SizedBox(
         height: 30,
-        width: 80,
+        width: 90,
         child: ElevatedButton(
             onPressed: () {
               controller.login();
             },
             child: Text(
               'Login',
-              style: TextStyle(fontSize: 20, color: MAIN_BACKGROUND_COLOR),
+              style: TextStyle(fontSize: 18, color: MAIN_BACKGROUND_COLOR),
             )),
       ),
       SizedBox(height: 5),
@@ -54,7 +54,7 @@ class LoginColumn extends GetWidget<AuthController> {
           },
           child: Text(
             'Sign Up',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
           )),
       SizedBox(height: 25),
     ]);
