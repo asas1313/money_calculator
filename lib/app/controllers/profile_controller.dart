@@ -60,7 +60,7 @@ class ProfileController extends GetxController {
       repository.updateUserDisplayName(
           email: email, displayName: displayName.text);
       Get.snackbar('Information', 'Display name was updated.',
-          backgroundColor: Colors.white);
+          backgroundColor: Get.theme.backgroundColor);
     }
   }
 
@@ -68,7 +68,7 @@ class ProfileController extends GetxController {
     if (_ready) {
       repository.updateUserPosition(email: email, position: position.text);
       Get.snackbar('Information', 'Possition was updated.',
-          backgroundColor: Colors.white);
+          backgroundColor: Get.theme.backgroundColor);
     }
   }
 
@@ -76,7 +76,7 @@ class ProfileController extends GetxController {
     if (_ready) {
       repository.updateUserPhone(email: email, phone: phone.text);
       Get.snackbar('Information', 'Phone was updated.',
-          backgroundColor: Colors.white);
+          backgroundColor: Get.theme.backgroundColor);
     }
   }
 
@@ -86,7 +86,7 @@ class ProfileController extends GetxController {
       repository.setEnabled(email: email, enabled: enabled.value);
       Get.snackbar('Information',
           'User' 's account enabled was set to ${enabled.value}.',
-          backgroundColor: Colors.white);
+          backgroundColor: Get.theme.backgroundColor);
     }
   }
 

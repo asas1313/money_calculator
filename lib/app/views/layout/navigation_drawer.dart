@@ -8,29 +8,26 @@ import 'menu/login_column.dart';
 import 'menu/logout_column.dart';
 
 class NavigationDrawer extends GetWidget<AuthController> {
-  const NavigationDrawer({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
           Container(
-            color: Color.fromRGBO(0, 0, 0, 0),
+            color: Color.fromRGBO(0, 0, 0, 0.0),
             padding: const EdgeInsets.all(32),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 15),
                 TextButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.HOME);
-                  },
-                  child: Text(
-                    'Home',
-                    style: textStyleDrawer,
-                  ),
-                ),
+                    onPressed: () {
+                      Get.toNamed(Routes.HOME);
+                    },
+                    child: Text(
+                      'Home',
+                      style: navigationButtonStyle(context),
+                    )),
                 SizedBox(height: 35),
                 TextButton(
                   onPressed: () {
@@ -38,7 +35,7 @@ class NavigationDrawer extends GetWidget<AuthController> {
                   },
                   child: Text(
                     'Calculator',
-                    style: textStyleDrawer,
+                    style: navigationButtonStyle(context),
                   ),
                 ),
               ],
@@ -50,7 +47,7 @@ class NavigationDrawer extends GetWidget<AuthController> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Obx(() => Container(
-                      padding: EdgeInsets.only(bottom: 25),
+                      padding: EdgeInsets.all(25),
                       child: controller.logedIn.value
                           ? LogoutColumn()
                           : LoginColumn(),
