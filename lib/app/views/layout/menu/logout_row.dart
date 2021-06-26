@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/auth_controller.dart';
 import 'package:inkubox_app/app/controllers/user_controller.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
-import 'package:inkubox_app/app/views/styles/colors.dart';
+import 'package:inkubox_app/app/views/styles/styles.dart';
+import 'package:inkubox_app/app/views/widgets/change_theme_button.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class LogoutRow extends GetWidget<UserController> {
@@ -31,15 +32,12 @@ class LogoutRow extends GetWidget<UserController> {
                         height: 20,
                         width: 100,
                         child: ElevatedButton(
-                          style:
-                              ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
                           onPressed: () {
                             Get.toNamed(Routes.ADMIN_DASHBOARD);
                           },
                           child: Text(
                             'Admin pannel',
-                            style: TextStyle(
-                                fontSize: 12, color: MAIN_BACKGROUND_COLOR),
+                            style: smallButtonStyle(context),
                           ),
                         ),
                       ),
@@ -54,13 +52,12 @@ class LogoutRow extends GetWidget<UserController> {
           height: 20,
           width: 65,
           child: ElevatedButton(
-            style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
             onPressed: () {
               Get.find<AuthController>().logout();
             },
             child: Text(
               'Logout',
-              style: TextStyle(fontSize: 12, color: MAIN_BACKGROUND_COLOR),
+              style: smallButtonStyle(context),
             ),
           ),
         ),
@@ -71,14 +68,16 @@ class LogoutRow extends GetWidget<UserController> {
           height: 20,
           width: 95,
           child: ElevatedButton(
-            style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
             onPressed: () => Get.toNamed(Routes.PROFILE),
             child: Text(
               'Edit Profile',
-              style: TextStyle(fontSize: 12, color: MAIN_BACKGROUND_COLOR),
+              style: smallButtonStyle(context),
             ),
           ),
         ),
+        SizedBox(width: 5),
+        ChangeThemeButton(),
+        SizedBox(width: 5),
       ]),
     );
   }

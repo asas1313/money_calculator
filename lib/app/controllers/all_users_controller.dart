@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/repositories/user_repository.dart';
 
@@ -21,7 +20,7 @@ class AllUsersController extends GetxController {
     Get.snackbar(
       'Information',
       'User' 's access mode was changed',
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.backgroundColor,
     );
   }
 }

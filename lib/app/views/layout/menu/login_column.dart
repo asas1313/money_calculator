@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkubox_app/app/controllers/auth_controller.dart';
 import 'package:inkubox_app/app/routes/app_routing.dart';
-import 'package:inkubox_app/app/views/styles/colors.dart';
+import 'package:inkubox_app/app/views/styles/styles.dart';
+import 'package:inkubox_app/app/views/widgets/change_theme_button.dart';
 
 class LoginColumn extends GetWidget<AuthController> {
   @override
@@ -44,7 +45,7 @@ class LoginColumn extends GetWidget<AuthController> {
             },
             child: Text(
               'Login',
-              style: TextStyle(fontSize: 18, color: MAIN_BACKGROUND_COLOR),
+              style: smallButtonStyle(context),
             )),
       ),
       SizedBox(height: 5),
@@ -54,9 +55,11 @@ class LoginColumn extends GetWidget<AuthController> {
           },
           child: Text(
             'Sign Up',
-            style: TextStyle(fontSize: 18),
+            style: smallTextButtonStyle(context),
           )),
       SizedBox(height: 25),
+      ChangeThemeButton(),
+      SizedBox(height: 25)
     ]);
   }
 }

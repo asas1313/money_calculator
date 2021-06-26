@@ -81,7 +81,7 @@ class SignupView extends GetWidget<AuthController> {
                       Get.snackbar(
                         'Error',
                         _error,
-                        backgroundColor: Colors.red,
+                        backgroundColor: Get.theme.errorColor,
                         duration: Duration(seconds: 5),
                       );
                     }

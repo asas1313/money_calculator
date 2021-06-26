@@ -21,7 +21,6 @@ class LayoutTemplate extends StatelessWidget {
       child: ResponsiveBuilder(
         builder: (context, sizingInformation) => Scaffold(
           drawer: sizingInformation.isMobile ? NavigationDrawer() : null,
-          backgroundColor: Colors.white,
           body: Column(
             children: <Widget>[
               Menu(),

@@ -20,14 +20,15 @@ class Authenticated extends GetWidget<UserController> {
                     child: Center(
                       child: Text(
                         'Unauthorized access!',
-                        style: TextStyle(color: Colors.red, fontSize: 20),
+                        style: TextStyle(
+                            color: Get.theme.errorColor, fontSize: 20),
                       ),
                     ),
                   )
             : Center(
                 child: Text(
                   'Your account is not enabled by system administrator!',
-                  style: TextStyle(color: Colors.red, fontSize: 20),
+                  style: TextStyle(color: Get.theme.errorColor, fontSize: 20),
                 ),
               )
         : Column(
@@ -35,7 +36,7 @@ class Authenticated extends GetWidget<UserController> {
             children: [
               Text(
                 'You are not loged in!',
-                style: TextStyle(color: Colors.red, fontSize: 20),
+                style: TextStyle(color: Get.theme.errorColor, fontSize: 20),
               ),
               TextButton(
                   onPressed: () => Get.toNamed(Routes.LOGIN),

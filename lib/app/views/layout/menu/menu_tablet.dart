@@ -12,7 +12,6 @@ class MenuTablet extends GetWidget<AuthController> {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Container(
-        color: Color.fromRGBO(0, 0, 0, 0),
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
@@ -46,10 +45,24 @@ class MenuTablet extends GetWidget<AuthController> {
                         children: [
                           SizedBox(width: 27),
                           TextButton(
+                            onPressed: () => Get.toNamed(Routes.HOME),
+                            child: Text(
+                              'Home',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .apply(fontWeightDelta: 900),
+                            ),
+                          ),
+                          SizedBox(width: 27),
+                          TextButton(
                             onPressed: () => Get.toNamed(Routes.CALCULATOR),
                             child: Text(
                               'Calculator',
-                              style: textStyleMenu,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .apply(fontWeightDelta: 900),
                             ),
                           ),
                         ],

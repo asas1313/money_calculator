@@ -70,11 +70,11 @@ class AuthController extends GetxController {
       if (e.code == 'weak-password') {
         print('Provided password is too weak');
         Get.snackbar('Error', 'The password provided is too weak!',
-            backgroundColor: Colors.red);
+            backgroundColor: Get.theme.errorColor);
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
         Get.snackbar('Error', 'The account already exists for that email.',
-            backgroundColor: Colors.red);
+            backgroundColor: Get.theme.errorColor);
       }
     } catch (e) {
       print(e);
@@ -121,7 +121,8 @@ class AuthController extends GetxController {
       //     Get.snackbar('Message', 'The email address is badly formatted.');
       //   }
     } catch (e) {
-      Get.snackbar('Error', e.toString(), backgroundColor: Colors.red);
+      Get.snackbar('Error', e.toString(),
+          backgroundColor: Get.theme.errorColor);
       print(e);
     }
   }
