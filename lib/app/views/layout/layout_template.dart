@@ -10,9 +10,11 @@ import 'navigation_drawer.dart';
 
 class LayoutTemplate extends StatelessWidget {
   final Widget child;
+  final bool isNavigationVisible;
 
   const LayoutTemplate({
     required this.child,
+    this.isNavigationVisible = true,
   });
 
   @override
@@ -20,10 +22,12 @@ class LayoutTemplate extends StatelessWidget {
     return CheckVersion(
       child: ResponsiveBuilder(
         builder: (context, sizingInformation) => Scaffold(
-          drawer: sizingInformation.isMobile ? NavigationDrawer() : null,
+          drawer: sizingInformation.isMobile
+              ? NavigationDrawer(isNavigationVisible: isNavigationVisible)
+              : null,
           body: Column(
             children: <Widget>[
-              Menu(),
+              Menu(isNavigationVisible: isNavigationVisible),
               Expanded(
                 child: ScreenTypeLayout(
                   mobile: ContentMobile(

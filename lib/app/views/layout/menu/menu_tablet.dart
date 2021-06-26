@@ -8,6 +8,10 @@ import 'package:inkubox_app/app/views/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MenuTablet extends GetWidget<AuthController> {
+  final bool isNavigationVisible;
+
+  MenuTablet({required this.isNavigationVisible});
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -33,42 +37,43 @@ class MenuTablet extends GetWidget<AuthController> {
                   child: Logo(),
                 ),
                 Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      width: Get.width / 2,
-                      padding: EdgeInsets.only(right: 25),
-                      child: Wrap(
-                        alignment: WrapAlignment.end,
-                        direction: Axis.horizontal,
-                        children: [
-                          SizedBox(width: 27),
-                          TextButton(
-                            onPressed: () => Get.toNamed(Routes.HOME),
-                            child: Text(
-                              'Home',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .apply(fontWeightDelta: 900),
+                Obx(
+                  () => controller.logedIn.value
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: Get.width / 2,
+                              padding: EdgeInsets.only(right: 25),
+                              child: Wrap(
+                                alignment: WrapAlignment.end,
+                                direction: Axis.horizontal,
+                                children: [
+                                  SizedBox(width: 27),
+                                  TextButton(
+                                    onPressed: () => Get.toNamed(Routes.HOME),
+                                    child: Text(
+                                      'Home',
+                                      style:
+                                          navigationSmallButtonStyle(context),
+                                    ),
+                                  ),
+                                  SizedBox(width: 27),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Get.toNamed(Routes.CALCULATOR),
+                                    child: Text(
+                                      'Calculator',
+                                      style:
+                                          navigationSmallButtonStyle(context),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 27),
-                          TextButton(
-                            onPressed: () => Get.toNamed(Routes.CALCULATOR),
-                            child: Text(
-                              'Calculator',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .apply(fontWeightDelta: 900),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                          ],
+                        )
+                      : Container(width: 0, height: 0),
                 ),
               ],
             ),

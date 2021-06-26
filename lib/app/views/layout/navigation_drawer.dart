@@ -8,38 +8,46 @@ import 'menu/login_column.dart';
 import 'menu/logout_column.dart';
 
 class NavigationDrawer extends GetWidget<AuthController> {
+  final bool isNavigationVisible;
+
+  NavigationDrawer({required this.isNavigationVisible});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          Container(
-            color: Color.fromRGBO(0, 0, 0, 0.0),
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 15),
-                TextButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.HOME);
-                    },
-                    child: Text(
-                      'Home',
-                      style: navigationButtonStyle(context),
-                    )),
-                SizedBox(height: 35),
-                TextButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.CALCULATOR);
-                  },
-                  child: Text(
-                    'Calculator',
-                    style: navigationButtonStyle(context),
-                  ),
-                ),
-              ],
-            ),
+          Obx(
+            () => controller.logedIn.value
+                ? Container(
+                    color: Color.fromRGBO(0, 0, 0, 0.0),
+                    padding: const EdgeInsets.all(32),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 15),
+                        TextButton(
+                            onPressed: () {
+                              Get.toNamed(Routes.HOME);
+                            },
+                            child: Text(
+                              'Home',
+                              style: navigationButtonStyle(context),
+                            )),
+                        SizedBox(height: 35),
+                        TextButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.CALCULATOR);
+                          },
+                          child: Text(
+                            'Calculator',
+                            style: navigationButtonStyle(context),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(width: 0, height: 0),
           ),
           Spacer(),
           Column(

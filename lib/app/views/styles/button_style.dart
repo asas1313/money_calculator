@@ -16,8 +16,9 @@ TextStyle smallTextButtonStyle(BuildContext context) {
 }
 
 TextStyle navigationButtonStyle(BuildContext context) {
-  return Theme.of(context)
-      .textTheme
-      .headline4!
-      .apply(color: Theme.of(context).backgroundColor, fontWeightDelta: 900);
+  return Theme.of(context).textTheme.headline4!.apply(fontWeightDelta: 900);
+}
+
+TextStyle navigationSmallButtonStyle(BuildContext context) {
+  return Theme.of(context).textTheme.bodyText2!.apply(fontWeightDelta: 900);
 }

@@ -4,6 +4,10 @@ import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:inkubox_app/app/views/styles/styles.dart';
 
 class MenuMobile extends StatelessWidget {
+  final bool isNavigationVisible;
+
+  const MenuMobile({required this.isNavigationVisible});
+
   @override
   Widget build(BuildContext context) {
     return Container(

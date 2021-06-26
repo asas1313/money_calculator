@@ -29,11 +29,11 @@ class AppRouting {
   static var appPages = [
     GetPage(
       name: Routes.HOME,
-      page: () => LayoutTemplate(child: HomeView()),
+      page: () => LayoutTemplate(child: HomeView(), isNavigationVisible: false),
     ),
     GetPage(
       name: Routes.SIGNUP,
-      page: () => LayoutTemplate(child: SignupView()),
+      page: () => SignupView(),
     ),
     GetPage(
       name: Routes.LOGIN,

@@ -12,7 +12,8 @@ class ProfileView extends GetWidget<ProfileController> {
     return Authenticated(
       child: SingleChildScrollView(
           child: ResponsiveBuilder(builder: (context, sizingInformation) {
-        var width = (sizingInformation.isDesktop) ? Get.width / 3 : Get.width;
+        var width =
+            (sizingInformation.isDesktop) ? Get.width / 3 : Get.width - 30;
         return Container(
           width: width,
           child: Center(

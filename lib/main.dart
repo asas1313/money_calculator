@@ -42,7 +42,8 @@ class App extends StatelessWidget {
               title: 'InkuboX app',
               theme: themeLight,
               darkTheme: themeDark,
-              home: LayoutTemplate(child: HomeView()),
+              home:
+                  LayoutTemplate(child: HomeView(), isNavigationVisible: false),
               getPages: AppRouting.appPages,
             );
           } else {
