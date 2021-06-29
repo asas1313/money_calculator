@@ -1,0 +1,10 @@
+{
+    "app": {
+        "name": "Money Calculator",
+        "description": "Money calculator application for any household."
+    },
+    "home_view": {
+        "app_bar": "Home view",
+        "middle_text": "Home view''s page"
+    }
+}

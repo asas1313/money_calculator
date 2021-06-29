@@ -1,0 +1,10 @@
+{
+    "app": {
+        "name": "Pinigų skaičiuotuvas",
+        "description": "Pinigų skaičiutuvas tai programėlė bet kuriam namų ūkiui."
+    },
+    "home_view": {
+        "app_bar": "Namų puslapis",
+        "middle_text": "Namų puslapio vaizdas"
+    }
+}
