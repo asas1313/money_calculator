@@ -18,7 +18,7 @@ class NavigationDrawer extends GetWidget<AuthController> {
       child: Column(
         children: [
           Obx(
-            () => controller.isLogedIn.value
+            () => controller.isLoggedIn
                 ? Container(
                     color: Color.fromRGBO(0, 0, 0, 0.0),
                     padding: const EdgeInsets.all(32),
@@ -46,7 +46,7 @@ class NavigationDrawer extends GetWidget<AuthController> {
               children: [
                 Obx(() => Container(
                       padding: EdgeInsets.all(25),
-                      child: controller.isLogedIn.value
+                      child: controller.isLoggedIn
                           ? LogoutColumn()
                           : LoginColumn(),
                     ))

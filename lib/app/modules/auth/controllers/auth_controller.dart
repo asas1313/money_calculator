@@ -3,21 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:money_calculator/app/data/model/user_model.dart';
 import 'package:money_calculator/app/data/provider/fb_provider.dart';
+import 'package:money_calculator/app/data/services/auth_repository.dart';
 import 'package:money_calculator/app/data/services/user_repository.dart';
 import 'package:money_calculator/app/routes/app_pages.dart';
 
 class AuthController extends GetxController {
-  var fbAuthProviderStateChangeStream;
-
-  final isLogedIn = false.obs;
-
-  String get screenName {
-    if (fbAuthProvider.currentUser != null) {
-      return fbAuthProvider.currentUser!.displayName ?? '';
-    } else {
-      return '';
-    }
-  }
+  bool get isLoggedIn => user.value != null;
+  final user = Rx<UserModel?>(null);
+  final _authRepository = AuthRepository();
+  final _userRepository = UserRepository();
 
   @override
   void onInit() {
@@ -31,75 +25,35 @@ class AuthController extends GetxController {
   }
 
   _subscribeToAuthStateChange() {
-    fbAuthProviderStateChangeStream =
-        fbAuthProvider.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently loged out!');
-        isLogedIn.value = false;
-      } else {
-        print('User ${user.email} is loged in!');
-        isLogedIn.value = true;
-      }
-    });
+    fbAuthProvider.authStateChanges().listen(
+          (User? _user) => _onData(_user),
+          cancelOnError: true,
+        );
   }
 
   @override
-  void onClose() {
-    fbAuthProviderStateChangeStream();
-  }
+  void onClose() {}
 
-  createAccount(String email, String password, String displayName) async {
-    try {
-      var _userCredential = await fbAuthProvider.createUserWithEmailAndPassword(
-          email: email, password: password);
-      var _userModel = UserModel(
-          uid: _userCredential.user!.uid,
-          email: email,
-          displayName: displayName);
-      if (await UserRepository().saveUser(_userModel)) {
-        login(email, password);
-        Get.back();
-      }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('Provided password is too weak');
-        Get.snackbar('Error', 'The password provided is too weak!',
-            backgroundColor: Get.theme.errorColor);
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-        Get.snackbar('Error', 'The account already exists for that email.',
-            backgroundColor: Get.theme.errorColor);
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  login(String email, String password, {bool goToHome = false}) {
+  loginWithEmailAndPassword(String email, String password,
+      {bool goToHome = false}) async {
     if (email.isEmpty || password.isEmpty) {
       Get.snackbar('Message', 'Enter email and password.');
       return;
     }
 
-    try {
-      fbAuthProvider
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) {
-        isLogedIn.value = true;
-        if (goToHome) {
-          print('if true');
-          Get.toNamed(Routes.HOME);
-        }
-      });
-    } catch (e) {
-      Get.snackbar('Error', e.toString(),
-          backgroundColor: Get.theme.errorColor);
-      print(e);
-    }
+    _authRepository
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) async {
+      if (goToHome) {
+        Get.toNamed(Routes.HOME);
+      }
+      user.value = await _userRepository.findUserByEmail(value.user!.email!);
+    });
   }
 
   logout() async {
     await fbAuthProvider.signOut();
+    user.value = null;
     Get.offAllNamed(Routes.HOME);
   }
 
@@ -115,6 +69,7 @@ class AuthController extends GetxController {
           return value.user == null ? null : 'You are not loggedin!';
         });
       } on FirebaseAuthException catch (e) {
+        print('FirebaseAuthException code is - ${e.code}');
         if (e.code == 'user-mismatch') {
           return 'The credential given does not correspond to the user.';
         } else if (e.code == 'user-not-found') {
@@ -170,5 +125,11 @@ class AuthController extends GetxController {
           fbAuthProvider.sendPasswordResetEmail(email: email);
           Get.back();
         });
+  }
+
+  _onData(User? _user) async {
+    if (_user != null) {
+      user.value = await _userRepository.findUserByEmail(_user.email!);
+    }
   }
 }

@@ -9,37 +9,40 @@ class LogoutRow extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
-      builder: (context, sizingInformation) => Row(children: [
-        Obx(() => SizedBox(
-              width: Get.width / 10,
-              child: Text(
-                controller.isLogedIn.value
-                    ? controller.screenName
-                    : 'Not connected!',
-                style: TextStyle(fontSize: 12),
-              ),
-            )),
-        SizedBox(
-          width: 5,
-          height: 50,
-        ),
-        SizedBox(
-          height: 20,
-          width: 65,
-          child: ElevatedButton(
-            onPressed: () {
-              Get.find<AuthController>().logout();
-            },
+      builder: (context, sizingInformation) => Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          SizedBox(
+            width: Get.width / 10,
             child: Text(
-              'Logout',
-              style: smallButtonStyle(context),
+              controller.isLoggedIn
+                  ? controller.user.value!.displayName
+                  : 'Not connected!',
+              style: TextStyle(fontSize: 12),
             ),
           ),
-        ),
-        SizedBox(width: 5),
-        ChangeThemeButton(),
-        SizedBox(width: 5),
-      ]),
+          SizedBox(
+            width: 5,
+            height: 50,
+          ),
+          SizedBox(
+            height: 20,
+            width: 65,
+            child: ElevatedButton(
+              onPressed: () {
+                Get.find<AuthController>().logout();
+              },
+              child: Text(
+                'Logout',
+                style: smallButtonStyle(context),
+              ),
+            ),
+          ),
+          SizedBox(width: 5),
+          ChangeThemeButton(),
+          SizedBox(width: 5),
+        ],
+      ),
     );
   }
 }

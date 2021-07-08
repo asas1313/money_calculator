@@ -35,7 +35,7 @@ class LoginRow extends GetWidget<AuthController> {
             border: InputBorder.none,
             labelStyle: TextStyle(fontSize: 12),
           ),
-          onFieldSubmitted: (value) => controller.login(
+          onFieldSubmitted: (value) => controller.loginWithEmailAndPassword(
             emailController.text,
             passwordController.text,
             goToHome: true,
@@ -48,7 +48,7 @@ class LoginRow extends GetWidget<AuthController> {
         width: 50,
         child: ElevatedButton(
             onPressed: () {
-              controller.login(
+              controller.loginWithEmailAndPassword(
                 emailController.text,
                 passwordController.text,
               );

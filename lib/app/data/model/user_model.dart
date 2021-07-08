@@ -17,9 +17,8 @@ class UserModel {
     if (!documentSnapshot.exists) {
       return;
     }
-    uid = documentSnapshot.id;
-    final _temp = documentSnapshot.data()! as UserModel;
-    email = _temp.email;
-    displayName = _temp.displayName;
+    uid = documentSnapshot['uid'];
+    email = documentSnapshot['email'];
+    displayName = documentSnapshot['displayName'];
   }
 }
