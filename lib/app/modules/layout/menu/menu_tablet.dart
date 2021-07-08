@@ -25,6 +25,7 @@ class MenuTablet extends GetWidget<AuthController> {
           children: [
             Logo(),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Row(
                     mainAxisSize: MainAxisSize.max,
@@ -32,45 +33,43 @@ class MenuTablet extends GetWidget<AuthController> {
                     children: [
                       Obx(() => Container(
                             padding: EdgeInsets.only(right: 25),
-                            child: controller.isLogedIn.value
+                            child: controller.isLoggedIn
                                 ? LogoutRow()
                                 : LoginRow(),
                           ))
                     ]),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Obx(
-                      () => controller.isLogedIn.value
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Container(
-                                  width: Get.width / 2,
-                                  padding: EdgeInsets.only(right: 25),
-                                  child: Wrap(
-                                    alignment: WrapAlignment.end,
-                                    direction: Axis.horizontal,
-                                    children: [
-                                      SizedBox(width: 27),
-                                      TextButton(
-                                        onPressed: () =>
-                                            Get.toNamed(Routes.HOME),
-                                        child: Text(
-                                          'Home',
-                                          style: navigationSmallButtonStyle(
-                                              context),
+                Obx(() => Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        controller.isLoggedIn
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    width: Get.width / 2,
+                                    padding: EdgeInsets.only(right: 25),
+                                    child: Wrap(
+                                      alignment: WrapAlignment.end,
+                                      direction: Axis.horizontal,
+                                      children: [
+                                        SizedBox(width: 27),
+                                        TextButton(
+                                          onPressed: () =>
+                                              Get.toNamed(Routes.HOME),
+                                          child: Text(
+                                            'Home',
+                                            style: navigationSmallButtonStyle(
+                                                context),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            )
-                          : Container(width: 0, height: 0),
-                    ),
-                  ],
-                ),
+                                ],
+                              )
+                            : Container(width: 0, height: 0),
+                      ],
+                    )),
               ],
             ),
           ],

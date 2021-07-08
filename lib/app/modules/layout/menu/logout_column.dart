@@ -14,8 +14,8 @@ class LogoutColumn extends GetWidget<AuthController> {
               width: Get.width,
               child: Center(
                 child: Text(
-                  controller.isLogedIn.value
-                      ? controller.screenName
+                  controller.isLoggedIn
+                      ? controller.user.value!.displayName
                       : 'Not connected!',
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
