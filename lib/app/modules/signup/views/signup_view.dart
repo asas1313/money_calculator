@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:money_calculator/app/core/values/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../controllers/signup_controller.dart';
@@ -19,7 +20,7 @@ class SignupView extends GetView<SignupController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Sign Up',
+                  'sign_up_title'.tr,
                   style: Get.textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
@@ -35,20 +36,21 @@ class SignupView extends GetView<SignupController> {
                         .hasMatch(value ?? '')) {
                       return null;
                     }
-                    return 'Enter valid e-mail address.';
+                    return 'sign_up_error_email_field'.tr;
                   },
                   decoration: InputDecoration(
-                    labelText: 'E-mail',
+                    labelText: 'sign_up_label_email'.tr,
                   ),
                 ),
                 SizedBox(height: 20),
                 TextFormField(
                   controller: controller.displayNameController,
-                  decoration: InputDecoration(labelText: 'Display Name'),
+                  decoration: InputDecoration(
+                      labelText: 'sign_uo_label_display_name'.tr),
                   autovalidateMode: AutovalidateMode.always,
                   validator: (value) {
                     if ((value ?? '').isEmpty) {
-                      return 'Display Name is required.';
+                      return 'sign_up_error_display_name_field'.tr;
                     }
                     return null;
                   },
@@ -57,11 +59,12 @@ class SignupView extends GetView<SignupController> {
                 TextFormField(
                   controller: controller.passwordController,
                   obscureText: true,
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration:
+                      InputDecoration(labelText: 'sign_up_label_password'.tr),
                   autovalidateMode: AutovalidateMode.always,
                   validator: (value) {
                     if ((value ?? '').isEmpty) {
-                      return 'Password is required.';
+                      return 'sign_up_error_password_field'.tr;
                     }
                     return null;
                   },
@@ -70,11 +73,12 @@ class SignupView extends GetView<SignupController> {
                 TextFormField(
                   controller: controller.confirmPasswordController,
                   obscureText: true,
-                  decoration: InputDecoration(labelText: 'Confirm password'),
+                  decoration: InputDecoration(
+                      labelText: 'sign_up_label_confirm_password'.tr),
                   autovalidateMode: AutovalidateMode.always,
                   validator: (value) {
                     if (value != controller.passwordController.text) {
-                      return 'Passwords do not match.';
+                      return 'sign_up_error_confirm_password_field'.tr;
                     }
                     return null;
                   },
@@ -94,7 +98,10 @@ class SignupView extends GetView<SignupController> {
                       );
                     }
                   },
-                  child: Text('Sign Up'),
+                  child: Text(
+                    'sign_up_button'.tr,
+                    style: smallButtonStyle(context),
+                  ),
                 ),
               ],
             ),

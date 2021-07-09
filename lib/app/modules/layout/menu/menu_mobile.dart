@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:money_calculator/app/global_widgets/change_language_button.dart';
 import 'package:money_calculator/app/global_widgets/logo.dart';
 import 'package:money_calculator/app/routes/app_pages.dart';
 
@@ -29,6 +30,7 @@ class MenuMobile extends StatelessWidget {
                         Scaffold.of(context).openDrawer();
                       },
                     ),
+                    ChangeLanguageButton(),
                     TextButton(
                       onPressed: () => Get.toNamed(Routes.HOME),
                       child: Logo(),
