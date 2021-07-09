@@ -4,6 +4,7 @@ import 'package:money_calculator/app/core/values/styles.dart';
 import 'package:money_calculator/app/global_widgets/change_theme_button.dart';
 import 'package:money_calculator/app/modules/auth/controllers/auth_controller.dart';
 import 'package:money_calculator/app/routes/app_pages.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class LoginRow extends GetWidget<AuthController> {
   @override
@@ -11,65 +12,72 @@ class LoginRow extends GetWidget<AuthController> {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
-    return Row(children: [
-      SizedBox(
-        width: Get.width / 8,
-        child: TextFormField(
-          controller: emailController,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            labelText: 'Email',
-            border: InputBorder.none,
-            labelStyle: TextStyle(fontSize: 12),
-          ),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      return Container(
+        width: sizingInformation.screenSize.width - 256,
+        child: Wrap(
+          alignment: WrapAlignment.end,
+          direction: Axis.horizontal,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 8.0,
+          runSpacing: 4.0,
+          children: [
+            SizedBox(
+              width: Get.width / 8,
+              child: TextFormField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  labelText: 'login_email'.tr,
+                  border: InputBorder.none,
+                  labelStyle: TextStyle(fontSize: 12),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: Get.width / 8,
+              child: TextFormField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'login_password'.tr,
+                  border: InputBorder.none,
+                  labelStyle: TextStyle(fontSize: 12),
+                ),
+                onFieldSubmitted: (value) =>
+                    controller.loginWithEmailAndPassword(
+                  emailController.text,
+                  passwordController.text,
+                  goToHome: true,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+              child: ElevatedButton(
+                  onPressed: () {
+                    controller.loginWithEmailAndPassword(
+                      emailController.text,
+                      passwordController.text,
+                    );
+                  },
+                  child: Text(
+                    'login_button'.tr,
+                    style: smallButtonStyle(context),
+                  )),
+            ),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed(Routes.SIGNUP);
+                },
+                child: Text(
+                  'sign_up_button'.tr,
+                  style: smallTextButtonStyle(context),
+                )),
+            ChangeThemeButton(),
+          ],
         ),
-      ),
-      SizedBox(width: 5),
-      SizedBox(
-        width: Get.width / 8,
-        child: TextFormField(
-          controller: passwordController,
-          obscureText: true,
-          decoration: InputDecoration(
-            labelText: 'Password',
-            border: InputBorder.none,
-            labelStyle: TextStyle(fontSize: 12),
-          ),
-          onFieldSubmitted: (value) => controller.loginWithEmailAndPassword(
-            emailController.text,
-            passwordController.text,
-            goToHome: true,
-          ),
-        ),
-      ),
-      SizedBox(width: 5),
-      SizedBox(
-        height: 20,
-        width: 50,
-        child: ElevatedButton(
-            onPressed: () {
-              controller.loginWithEmailAndPassword(
-                emailController.text,
-                passwordController.text,
-              );
-            },
-            child: Text(
-              'Login',
-              style: smallButtonStyle(context),
-            )),
-      ),
-      SizedBox(width: 5),
-      TextButton(
-          onPressed: () {
-            Get.toNamed(Routes.SIGNUP);
-          },
-          child: Text(
-            'Sign Up',
-            style: smallTextButtonStyle(context),
-          )),
-      SizedBox(width: 5),
-      ChangeThemeButton(),
-      SizedBox(width: 5),
-    ]);
+      );
+    });
   }
 }

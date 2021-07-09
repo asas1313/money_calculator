@@ -16,7 +16,7 @@ class LogoutColumn extends GetWidget<AuthController> {
                 child: Text(
                   controller.isLoggedIn
                       ? controller.user.value!.displayName
-                      : 'Not connected!',
+                      : 'logout_not_connected'.tr,
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
@@ -32,7 +32,7 @@ class LogoutColumn extends GetWidget<AuthController> {
               Get.find<AuthController>().logout();
             },
             child: Text(
-              'Logout',
+              'logout_button'.tr,
               style: smallButtonStyle(context),
             ),
           ),

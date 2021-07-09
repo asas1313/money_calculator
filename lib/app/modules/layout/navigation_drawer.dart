@@ -31,7 +31,7 @@ class NavigationDrawer extends GetWidget<AuthController> {
                               Get.toNamed(Routes.HOME);
                             },
                             child: Text(
-                              'Home',
+                              'menu_home'.tr,
                               style: navigationButtonStyle(context),
                             )),
                       ],

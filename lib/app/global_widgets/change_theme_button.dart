@@ -12,7 +12,7 @@ class ChangeThemeButton extends GetWidget<AppController> {
       child: ElevatedButton(
         onPressed: () => controller.changeTheme(),
         child: Text(
-          'Change Theme',
+          'change_theme_button'.tr,
           style: smallButtonStyle(context),
         ),
       ),
