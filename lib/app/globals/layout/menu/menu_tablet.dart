@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inkubox_app/app/globals/widgets/app_controls/change_language_button.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+
 import '/app/controllers/auth_controller.dart';
 import '/app/utils/app_routing.dart';
 import '/app/globals/layout/menu/login_row.dart';
 import '/app/globals/layout/menu/logout_row.dart';
 import '/app/globals/styles/styles.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class MenuTablet extends GetWidget<AuthController> {
   final bool isNavigationVisible;
@@ -17,26 +19,25 @@ class MenuTablet extends GetWidget<AuthController> {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Container(
         padding: const EdgeInsets.all(8),
-        child: Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Obx(() => Container(
-                        padding: EdgeInsets.only(right: 25),
-                        child:
-                            controller.logedIn.value ? LogoutRow() : LoginRow(),
-                      ))
-                ]),
-            Row(
+            TextButton(
+              onPressed: () => Get.toNamed(Routes.HOME),
+              child: Logo(),
+            ),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                TextButton(
-                  onPressed: () => Get.toNamed(Routes.HOME),
-                  child: Logo(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 25.0),
+                  child: ChangeLanguageButton(),
                 ),
-                Spacer(),
+                Obx(() => Container(
+                      padding: EdgeInsets.only(right: 25),
+                      child:
+                          controller.logedIn.value ? LogoutRow() : LoginRow(),
+                    )),
                 Obx(
                   () => controller.logedIn.value
                       ? Column(
@@ -49,21 +50,21 @@ class MenuTablet extends GetWidget<AuthController> {
                                 alignment: WrapAlignment.end,
                                 direction: Axis.horizontal,
                                 children: [
-                                  SizedBox(width: 27),
+                                  SizedBox(width: 25),
                                   TextButton(
                                     onPressed: () => Get.toNamed(Routes.HOME),
                                     child: Text(
-                                      'Home',
+                                      'menu_home'.tr,
                                       style:
                                           navigationSmallButtonStyle(context),
                                     ),
                                   ),
-                                  SizedBox(width: 27),
+                                  SizedBox(width: 25),
                                   TextButton(
                                     onPressed: () =>
                                         Get.toNamed(Routes.CALCULATOR),
                                     child: Text(
-                                      'Calculator',
+                                      'menu_calculator'.tr,
                                       style:
                                           navigationSmallButtonStyle(context),
                                     ),
