@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/calculator_controller.dart';
-import 'package:inkubox_app/app/views/widgets/authenticated.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+import '../controllers/calculator_controller.dart';
+import '../globals/widgets/app_controls/authenticated.dart';
 
 class CalculatorView extends GetWidget<CalculatorController> {
   @override

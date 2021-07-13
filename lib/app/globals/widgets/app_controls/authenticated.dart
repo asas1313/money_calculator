@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/user_controller.dart';
-import 'package:inkubox_app/app/routes/app_routing.dart';
+
+import '/app/controllers/user_controller.dart';
+import '/app/utils/app_routing.dart';
 
 class Authenticated extends GetWidget<UserController> {
   final Widget child;

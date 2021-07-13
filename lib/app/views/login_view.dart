@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/auth_controller.dart';
-import 'package:inkubox_app/app/routes/app_routing.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'styles/styles.dart';
+import '../utils/app_routing.dart';
+import '../globals/styles/styles.dart';
+import '../controllers/auth_controller.dart';
 
 class LoginView extends GetWidget<AuthController> {
   @override

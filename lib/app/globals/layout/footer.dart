@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/app_controller.dart';
+
+import '../../controllers/app_controller.dart';
 
 class Footer extends GetWidget<AppController> {
   @override

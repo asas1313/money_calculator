@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/app_controller.dart';
+import '/app/controllers/app_controller.dart';
 
 class CheckVersion extends GetWidget<AppController> {
   final Widget child;

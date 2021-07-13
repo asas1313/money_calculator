@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inkubox_app/app/views/styles/styles.dart';
+
+import '/app/globals/styles/styles.dart';
 
 final themeLight = ThemeData(
   brightness: Brightness.light,

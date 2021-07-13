@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/user_controller.dart';
-import 'package:inkubox_app/app/models/user_model.dart';
-import 'package:inkubox_app/app/routes/app_routing.dart';
-import 'package:inkubox_app/app/repositories/user_repository.dart';
+import '../controllers/user_controller.dart';
+import '../models/user_model.dart';
+import '../utils/app_routing.dart';
+import '../repositories/user_repository.dart';
 
 class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;

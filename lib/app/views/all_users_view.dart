@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/all_users_controller.dart';
-import 'package:inkubox_app/app/views/widgets/authenticated.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'widgets/avatar.dart';
+import '../controllers/all_users_controller.dart';
+import '../globals/widgets/app_controls/authenticated.dart';
+import '../globals/widgets/avatar.dart';
 
 class AllUsersView extends GetWidget<AllUsersController> {
   @override

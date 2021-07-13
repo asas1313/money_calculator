@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:inkubox_app/app/models/calculation_model.dart';
+import '../models/calculation_model.dart';
 
 class CalculationsRepository {
   final _calculations = FirebaseFirestore.instance.collection('calculations');

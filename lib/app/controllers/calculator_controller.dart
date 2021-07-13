@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/auth_controller.dart';
-import 'package:inkubox_app/app/models/calculation_model.dart';
-import 'package:inkubox_app/app/repositories/calculation_repository.dart';
+import '../controllers/auth_controller.dart';
+import '../models/calculation_model.dart';
+import '../repositories/calculation_repository.dart';
 import 'package:money_converter/Currency.dart';
 import 'package:money_converter/money_converter.dart';
 
