@@ -7,11 +7,10 @@ class ChangeThemeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 20,
-      width: 100,
       child: ElevatedButton(
         onPressed: () => _changeTheme(),
         child: Text(
-          'Change Theme',
+          'change_theme_button'.tr,
           style: smallButtonStyle(context),
         ),
       ),

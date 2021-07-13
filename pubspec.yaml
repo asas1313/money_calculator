@@ -32,3 +32,6 @@ flutter:
 
   assets:
     - assets/img/logo.png
+    - assets/languages/en.json
+    - assets/languages/lt.json
+    - assets/languages/fr.json
