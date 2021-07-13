@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:inkubox_app/app/models/user_model.dart';
+import '../models/user_model.dart';
 
 class UserRepository {
   final _users = FirebaseFirestore.instance.collection('users');

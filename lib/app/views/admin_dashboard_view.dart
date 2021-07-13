@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/admin_dashboard_controller.dart';
-import 'package:inkubox_app/app/routes/app_routing.dart';
-import 'package:inkubox_app/app/views/widgets/authenticated.dart';
+
+import '../controllers/admin_dashboard_controller.dart';
+import '../utils/app_routing.dart';
+import '../globals/widgets/app_controls/authenticated.dart';
 
 class AdminDashboardView extends GetWidget<AdminDashboardController> {
   @override

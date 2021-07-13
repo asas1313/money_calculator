@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/all_calculations_controller.dart';
-import 'package:inkubox_app/app/views/styles/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'widgets/authenticated.dart';
+import '../controllers/all_calculations_controller.dart';
+import '../globals/styles/colors.dart';
+import '../globals/widgets/app_controls/authenticated.dart';
 
 class AllCalculationsView extends GetWidget<AllCalculationsController> {
   @override

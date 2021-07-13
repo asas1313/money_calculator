@@ -1,18 +1,19 @@
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/bindings/admin_dashboard_binding.dart';
-import 'package:inkubox_app/app/controllers/bindings/all_calculation_binding.dart';
-import 'package:inkubox_app/app/controllers/bindings/all_users_binding.dart';
-import 'package:inkubox_app/app/controllers/bindings/calculator_binding.dart';
-import 'package:inkubox_app/app/controllers/bindings/profile_binding.dart';
-import 'package:inkubox_app/app/views/calculator_view.dart';
-import 'package:inkubox_app/app/views/home_view.dart';
-import 'package:inkubox_app/app/views/admin_dashboard_view.dart';
-import 'package:inkubox_app/app/views/layout/layout_template.dart';
-import 'package:inkubox_app/app/views/login_view.dart';
-import 'package:inkubox_app/app/views/profile_view.dart';
-import 'package:inkubox_app/app/views/signup_view.dart';
-import 'package:inkubox_app/app/views/all_users_view.dart';
-import 'package:inkubox_app/app/views/all_calculations_view.dart';
+
+import '../controllers/bindings/admin_dashboard_binding.dart';
+import '../controllers/bindings/all_calculation_binding.dart';
+import '../controllers/bindings/all_users_binding.dart';
+import '../controllers/bindings/calculator_binding.dart';
+import '../controllers/bindings/profile_binding.dart';
+import '../globals/layout/layout_template.dart';
+import '../views/calculator_view.dart';
+import '../views/home_view.dart';
+import '../views/admin_dashboard_view.dart';
+import '../views/login_view.dart';
+import '../views/profile_view.dart';
+import '../views/signup_view.dart';
+import '../views/all_users_view.dart';
+import '../views/all_calculations_view.dart';
 
 class Routes {
   static const HOME = '/home';
@@ -29,11 +30,11 @@ class AppRouting {
   static var appPages = [
     GetPage(
       name: Routes.HOME,
-      page: () => LayoutTemplate(child: HomeView()),
+      page: () => LayoutTemplate(child: HomeView(), isNavigationVisible: false),
     ),
     GetPage(
       name: Routes.SIGNUP,
-      page: () => LayoutTemplate(child: SignupView()),
+      page: () => SignupView(),
     ),
     GetPage(
       name: Routes.LOGIN,

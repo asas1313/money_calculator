@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/profile_controller.dart';
-import 'package:inkubox_app/app/views/widgets/authenticated.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'widgets/avatar.dart';
+import '../controllers/profile_controller.dart';
+import '../globals/widgets/app_controls/authenticated.dart';
+import '../globals/widgets/avatar.dart';
 
 class ProfileView extends GetWidget<ProfileController> {
   @override
@@ -12,7 +12,8 @@ class ProfileView extends GetWidget<ProfileController> {
     return Authenticated(
       child: SingleChildScrollView(
           child: ResponsiveBuilder(builder: (context, sizingInformation) {
-        var width = (sizingInformation.isDesktop) ? Get.width / 3 : Get.width;
+        var width =
+            (sizingInformation.isDesktop) ? Get.width / 3 : Get.width - 30;
         return Container(
           width: width,
           child: Center(

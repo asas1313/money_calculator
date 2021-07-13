@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/auth_controller.dart';
-import 'package:inkubox_app/app/controllers/user_controller.dart';
-import 'package:inkubox_app/app/routes/app_routing.dart';
-import 'package:inkubox_app/app/views/styles/styles.dart';
-import 'package:inkubox_app/app/views/widgets/change_theme_button.dart';
+import '/app/controllers/auth_controller.dart';
+import '/app/controllers/user_controller.dart';
+import '/app/utils/app_routing.dart';
+import '/app/globals/styles/styles.dart';
+import '/app/globals/widgets/app_controls/change_theme_button.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class LogoutRow extends GetWidget<UserController> {

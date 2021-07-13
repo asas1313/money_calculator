@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/user_controller.dart';
+import '../controllers/user_controller.dart';
 
 class StorageRepository {
   final _storage = FirebaseStorage.instance;

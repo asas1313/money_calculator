@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/views/styles/styles.dart';
+import '/app/globals/styles/styles.dart';
 
 class ChangeThemeButton extends StatelessWidget {
   @override

@@ -3,13 +3,14 @@ import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/controllers/app_controller.dart';
-import 'package:inkubox_app/app/controllers/auth_controller.dart';
-import 'package:inkubox_app/app/controllers/user_controller.dart';
-import 'package:inkubox_app/app/routes/app_routing.dart';
-import 'package:inkubox_app/app/views/home_view.dart';
-import 'package:inkubox_app/app/views/layout/layout_template.dart';
-import 'package:inkubox_app/app/views/styles/styles.dart';
+
+import 'app/controllers/app_controller.dart';
+import 'app/controllers/auth_controller.dart';
+import 'app/controllers/user_controller.dart';
+import 'app/utils/app_routing.dart';
+import 'app/views/home_view.dart';
+import 'app/globals/styles/styles.dart';
+import 'app/globals/layout/layout_template.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +43,8 @@ class App extends StatelessWidget {
               title: 'InkuboX app',
               theme: themeLight,
               darkTheme: themeDark,
-              home: LayoutTemplate(child: HomeView()),
+              home:
+                  LayoutTemplate(child: HomeView(), isNavigationVisible: false),
               getPages: AppRouting.appPages,
             );
           } else {

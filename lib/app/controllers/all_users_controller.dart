@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:inkubox_app/app/repositories/user_repository.dart';
+import '../repositories/user_repository.dart';
 
 class AllUsersController extends GetxController {
   final firestore = UserRepository();
