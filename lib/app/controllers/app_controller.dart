@@ -1,8 +1,8 @@
 import 'dart:ui';
-
-import 'package:get/get.dart';
-import '../repositories/settings_repository.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:get/get.dart';
+
+import '/app/repositories/settings_repository.dart';
 
 class AppController extends GetxController {
   var appVersion = ''.obs;

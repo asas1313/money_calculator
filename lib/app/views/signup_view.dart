@@ -22,7 +22,7 @@ class SignupView extends GetWidget<AuthController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Sign Up',
+                    'sign_up_title'.tr,
                     style: TextStyle(
                         fontWeight: FontWeight.w200,
                         height: 1.1,
@@ -42,21 +42,23 @@ class SignupView extends GetWidget<AuthController> {
                           .hasMatch(value ?? '')) {
                         return null;
                       }
-                      return 'Enter valid e-mail address.';
+                      return 'sign_up_error_email_field'.tr;
                     },
                     decoration: InputDecoration(
-                      labelText: 'E-mail',
+                      labelText: 'sign_up_label_email'.tr,
                     ),
                   ),
                   SizedBox(height: 20),
                   TextFormField(
                     controller: controller.password,
                     obscureText: true,
-                    decoration: InputDecoration(labelText: 'Password'),
+                    decoration: InputDecoration(
+                      labelText: 'sign_up_label_password'.tr,
+                    ),
                     autovalidateMode: AutovalidateMode.always,
                     validator: (value) {
                       if ((value ?? '').isEmpty) {
-                        return 'Password is required.';
+                        return 'sign_up_error_password_field'.tr;
                       }
                       return null;
                     },
@@ -65,11 +67,13 @@ class SignupView extends GetWidget<AuthController> {
                   TextFormField(
                     controller: controller.passwordConfirm,
                     obscureText: true,
-                    decoration: InputDecoration(labelText: 'Confirm password'),
+                    decoration: InputDecoration(
+                      labelText: 'sign_up_label_confirm_password'.tr,
+                    ),
                     autovalidateMode: AutovalidateMode.always,
                     validator: (value) {
                       if (value != controller.password.text) {
-                        return 'Passwords do not match.';
+                        return 'sign_up_error_confirm_password_field'.tr;
                       }
                       return null;
                     },
@@ -82,14 +86,14 @@ class SignupView extends GetWidget<AuthController> {
                         controller.createAccount();
                       } else {
                         Get.snackbar(
-                          'Error',
+                          'error_title'.tr,
                           _error,
                           backgroundColor: Get.theme.errorColor,
                           duration: Duration(seconds: 5),
                         );
                       }
                     },
-                    child: Text('Sign Up'),
+                    child: Text('sign_up_button'.tr),
                   ),
                 ],
               ),

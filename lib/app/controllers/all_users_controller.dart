@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import '../repositories/user_repository.dart';
+
+import '/app/repositories/user_repository.dart';
 
 class AllUsersController extends GetxController {
   final firestore = UserRepository();

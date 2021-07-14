@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/user_controller.dart';
-import '../models/user_model.dart';
-import '../utils/app_routing.dart';
-import '../repositories/user_repository.dart';
+
+import '/app/controllers/user_controller.dart';
+import '/app/models/user_model.dart';
+import '/app/utils/app_routing.dart';
+import '/app/repositories/user_repository.dart';
 
 class AuthController extends GetxController {
   final _auth = FirebaseAuth.instance;
@@ -68,11 +69,9 @@ class AuthController extends GetxController {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('Provided password is too weak');
         Get.snackbar('Error', 'The password provided is too weak!',
             backgroundColor: Get.theme.errorColor);
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
         Get.snackbar('Error', 'The account already exists for that email.',
             backgroundColor: Get.theme.errorColor);
       }
@@ -96,30 +95,9 @@ class AuthController extends GetxController {
         _controller.loadController(email.text);
         logedIn.value = true;
         if (goToHome) {
-          print('if true');
           Get.toNamed(Routes.HOME);
         }
       });
-      // } on FirebaseAuthException catch (e) {
-      //   if (e.code == 'invalid-email') {
-      //     print('Provided email address is not valid.');
-      //     Get.snackbar('Error', 'Provided email address is not valid.',
-      //         backgroundColor: Colors.red);
-      //   } else if (e.code == 'wrong-password') {
-      //     print('Provided password is invalid for the given email.');
-      //     Get.snackbar(
-      //         'Error', 'Provided password is invalid for the given email.',
-      //         backgroundColor: Colors.red);
-      //   } else if (e.code == 'user-not-found') {
-      //     print(
-      //         'There is no user record corresponding to this identifier. The user may have been deleted.');
-      //     Get.snackbar('Error',
-      //         'There is no user record corresponding to this identifier. The user may have been deleted.',
-      //         backgroundColor: Colors.red);
-      //   } else if (e.code == 'invalid-email') {
-      //     print('The email address is badly formatted.');
-      //     Get.snackbar('Message', 'The email address is badly formatted.');
-      //   }
     } catch (e) {
       Get.snackbar('Error', e.toString(),
           backgroundColor: Get.theme.errorColor);

@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import '../repositories/storage_repository.dart';
-import '../repositories/user_repository.dart';
+
+import '/app/repositories/storage_repository.dart';
+import '/app/repositories/user_repository.dart';
 
 import 'auth_controller.dart';
 

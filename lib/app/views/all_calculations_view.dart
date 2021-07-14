@@ -34,7 +34,9 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                                 color: SECONDARY_COLOR,
                                 child: ListTile(
                                   title: SizedBox(
-                                    child: Text('Filters'),
+                                    child: Text(
+                                      'all_calculations_silters_title'.tr,
+                                    ),
                                   ),
                                   subtitle: Text(''),
                                 ),
@@ -42,7 +44,9 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                               Card(
                                 child: ListTile(
                                   title: SizedBox(
-                                    child: Text('Initial sum'),
+                                    child: Text(
+                                      'all_calculations_filter_initial_sum'.tr,
+                                    ),
                                   ),
                                   subtitle: Column(
                                     children: [
@@ -56,7 +60,9 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                                             TextInputType.numberWithOptions(
                                                 decimal: true),
                                         decoration: InputDecoration(
-                                          labelText: 'greater than',
+                                          labelText:
+                                              'all_calculations_filter_greater_than'
+                                                  .tr,
                                         ),
                                       ),
                                       Divider(),
@@ -70,7 +76,9 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                                             TextInputType.numberWithOptions(
                                                 decimal: true),
                                         decoration: InputDecoration(
-                                          labelText: 'equals',
+                                          labelText:
+                                              'all_calculations_filter_equals'
+                                                  .tr,
                                         ),
                                       ),
                                       Divider(),
@@ -84,19 +92,27 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                                             TextInputType.numberWithOptions(
                                                 decimal: true),
                                         decoration: InputDecoration(
-                                          labelText: 'less than',
+                                          labelText:
+                                              'all_calculations_filter_less_than'
+                                                  .tr,
                                         ),
                                       ),
                                       Divider(),
                                       ElevatedButton(
                                           onPressed: () =>
                                               controller.clearFilters(),
-                                          child: Text('Clear')),
+                                          child: Text(
+                                            'all_calculations_filter_clear_button'
+                                                .tr,
+                                          )),
                                       Divider(),
                                       ElevatedButton(
                                           onPressed: () =>
                                               controller.refreshAll(),
-                                          child: Text('Refresh'))
+                                          child: Text(
+                                            'all_calculations_filter_refresh_button'
+                                                .tr,
+                                          ))
                                     ],
                                   ),
                                 ),
@@ -119,17 +135,30 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                                   color: PRIMARY_COLOR,
                                   child: ListTile(
                                     title: SizedBox(
-                                      child: Text('E-mail'),
+                                      child: Text(
+                                        'all_calculations_column_email'.tr,
+                                      ),
                                     ),
                                     subtitle: Row(
                                       children: [
-                                        Text('Operation time'),
+                                        Text(
+                                          'all_calculations_column_operation_time'
+                                              .tr,
+                                        ),
                                         Spacer(),
-                                        Text('Initial sum'),
+                                        Text(
+                                          'all_calculations_column_initial_sum'
+                                              .tr,
+                                        ),
                                         Spacer(),
-                                        Text('Calculated sum'),
+                                        Text(
+                                          'all_calculations_column_calculated_sum'
+                                              .tr,
+                                        ),
                                         Spacer(),
-                                        Text('EUR to USD rate'),
+                                        Text(
+                                          'all_calculations_column_rate'.tr,
+                                        ),
                                       ],
                                     ),
                                   ),

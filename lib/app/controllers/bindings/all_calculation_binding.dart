@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../all_calculations_controller.dart';
+import '/app/controllers/all_calculations_controller.dart';
 
 class AllCalculationsBinding implements Bindings {
   @override

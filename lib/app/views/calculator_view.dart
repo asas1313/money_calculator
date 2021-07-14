@@ -24,7 +24,7 @@ class CalculatorView extends GetWidget<CalculatorController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(height: 25),
-                    SelectableText('Sum (USD):'),
+                    SelectableText('calculator_sum_usd'.tr),
                     TextFormField(
                       controller: controller.inputController,
                       inputFormatters: [
@@ -35,28 +35,28 @@ class CalculatorView extends GetWidget<CalculatorController> {
                           TextInputType.numberWithOptions(decimal: true),
                       decoration: InputDecoration(
                           prefix: Text('\$'),
-                          labelText: 'Enter Amount in USD and press ENTER',
+                          labelText: 'calculatoe_sum_usd_hint'.tr,
                           hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                       onEditingComplete: () => controller.calculate(),
                     ),
-                    Text('* Enter sum in USD and press ENTER'),
+                    Text('calculator_sum_usd_undertext'.tr),
                     SizedBox(height: 25),
-                    SelectableText('Calculated sum (EUR):'),
+                    SelectableText('calculator_calculated_sum_eur'.tr),
                     TextFormField(
                       controller: controller.responseController,
                       decoration: InputDecoration(
                           prefix: Text('\€'),
-                          labelText: 'Sum in EUR',
+                          labelText: 'calculator_calculated_sum_eur_hint'.tr,
                           hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                       enabled: false,
                     ),
                     SizedBox(height: 25),
-                    SelectableText('Current USD to EUR rate:'),
+                    SelectableText('calculator_eur_to_usd_rate'.tr),
                     TextFormField(
                       controller: controller.currencyRateController,
                       decoration: InputDecoration(
                           prefix: Text('\€'),
-                          labelText: '1 USD in EUR',
+                          labelText: 'calculator_eur_to_usd_rate_hint'.tr,
                           hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                       enabled: false,
                     ),

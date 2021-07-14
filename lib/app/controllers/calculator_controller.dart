@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/auth_controller.dart';
-import '../models/calculation_model.dart';
-import '../repositories/calculation_repository.dart';
 import 'package:money_converter/Currency.dart';
 import 'package:money_converter/money_converter.dart';
+
+import '/app/controllers/auth_controller.dart';
+import '/app/models/calculation_model.dart';
+import '/app/repositories/calculation_repository.dart';
 
 class CalculatorController extends GetxController {
   final _repository = CalculationsRepository();

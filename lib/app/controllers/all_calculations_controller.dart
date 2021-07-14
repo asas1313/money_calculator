@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import '../models/calculation_model.dart';
-import '../repositories/calculation_repository.dart';
+
+import '/app/models/calculation_model.dart';
+import '/app/repositories/calculation_repository.dart';
 
 class AllCalculationsController extends GetxController {
   var _calculations = <CalculationModel>[];

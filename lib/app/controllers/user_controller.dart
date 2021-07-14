@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../repositories/user_repository.dart';
+
+import '/app/repositories/user_repository.dart';
 
 class UserController extends GetxController {
   final role = ''.obs;

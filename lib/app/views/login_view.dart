@@ -22,7 +22,7 @@ class LoginView extends GetWidget<AuthController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'Log In',
+                      'login_title'.tr,
                       style: TextStyle(
                           fontWeight: FontWeight.w200,
                           height: 1.1,
@@ -35,13 +35,15 @@ class LoginView extends GetWidget<AuthController> {
                       controller: controller.email,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        labelText: 'E-mail',
+                        labelText: 'login_email'.tr,
                       ),
                     ),
                     TextFormField(
                       controller: controller.password,
                       obscureText: true,
-                      decoration: InputDecoration(labelText: 'Password'),
+                      decoration: InputDecoration(
+                        labelText: 'login_password'.tr,
+                      ),
                       onFieldSubmitted: (value) =>
                           controller.login(goToHome: true),
                     ),
@@ -49,7 +51,7 @@ class LoginView extends GetWidget<AuthController> {
                       height: 40,
                     ),
                     ElevatedButton(
-                      child: Text('Login'),
+                      child: Text('login_button'.tr),
                       onPressed: () => controller.login(goToHome: true),
                     ),
                     SizedBox(
@@ -62,14 +64,14 @@ class LoginView extends GetWidget<AuthController> {
                           onPressed: () {
                             Get.toNamed(Routes.SIGNUP);
                           },
-                          child: Text('Sign Up'),
+                          child: Text('sign_up_button'.tr),
                         ),
                         SizedBox(width: 20),
                         TextButton(
                           onPressed: () {
                             controller.resetPassword();
                           },
-                          child: Text('Reset password'),
+                          child: Text('login_reset_password'.tr),
                         ),
                       ],
                     ),

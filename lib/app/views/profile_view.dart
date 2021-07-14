@@ -30,49 +30,53 @@ class ProfileView extends GetWidget<ProfileController> {
                   initialValue: controller.email,
                   enabled: false,
                   decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'profile_email'.tr,
                       hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                 ),
                 SizedBox(height: 15),
                 TextFormField(
                   controller: controller.displayName,
                   decoration: InputDecoration(
-                      labelText: 'Display name',
+                      labelText: 'profile_display_name'.tr,
                       hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                 ),
                 SizedBox(height: 15),
                 TextFormField(
                   controller: controller.position,
                   decoration: InputDecoration(
-                      labelText: 'Position',
+                      labelText: 'profile_position'.tr,
                       hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                 ),
                 SizedBox(height: 15),
                 TextFormField(
                   controller: controller.phone,
                   decoration: InputDecoration(
-                      labelText: 'Phone',
+                      labelText: 'profile_phone'.tr,
                       hintStyle: TextStyle(fontWeight: FontWeight.w600)),
                 ),
                 SizedBox(height: 10),
-                Text('* Edited data is saved automatically.'),
+                Text('profile_info_text'.tr),
                 SizedBox(height: 35),
                 TextFormField(
                   controller: controller.oldPassword,
                   obscureText: true,
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration: InputDecoration(
+                    labelText: 'profile_password'.tr,
+                  ),
                   autovalidateMode: AutovalidateMode.always,
                 ),
                 SizedBox(height: 15),
                 TextFormField(
                   controller: controller.newPassword,
                   obscureText: true,
-                  decoration: InputDecoration(labelText: 'New password'),
+                  decoration: InputDecoration(
+                    labelText: 'profile_new_password'.tr,
+                  ),
                   autovalidateMode: AutovalidateMode.always,
                   validator: (value) {
                     if (controller.oldPassword.text.isNotEmpty &&
                         (value ?? '').isEmpty) {
-                      return 'Password is required.';
+                      return 'profile_new_password_required'.tr;
                     }
                     return null;
                   },
@@ -81,11 +85,13 @@ class ProfileView extends GetWidget<ProfileController> {
                 TextFormField(
                   controller: controller.confirmPassword,
                   obscureText: true,
-                  decoration: InputDecoration(labelText: 'Confirm password'),
+                  decoration: InputDecoration(
+                    labelText: 'profile_confirm_password'.tr,
+                  ),
                   autovalidateMode: AutovalidateMode.always,
                   validator: (value) {
                     if (value != controller.newPassword.text) {
-                      return 'Passwords do not match.';
+                      return 'profile_passwords_not_match'.tr;
                     }
                     return null;
                   },
@@ -105,7 +111,7 @@ class ProfileView extends GetWidget<ProfileController> {
                       );
                     }
                   },
-                  child: Text('Change password'),
+                  child: Text('profile_change_password_button'.tr),
                 ),
                 SizedBox(height: 15),
               ],
