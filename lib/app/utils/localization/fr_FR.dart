@@ -53,9 +53,10 @@ get frFR => {
       'admin_dashboard_manage_users': 'Manage users-fr',
       'admin_dashboard_all_calculations': 'Review all calculations-fr',
       // All calculations view
-      'all_calculations_silters_title': 'Filters-fr',
+      'all_calculations_filters_title': 'Filters-fr',
       'all_calculations_filter_initial_sum': 'Initial sum-fr',
       'all_calculations_filter_greater_than': 'greater than-fr',
+      'all_calculations_filter_equals': 'equals-fr',
       'all_calculations_filter_less_than': 'less than-fr',
       'all_calculations_filter_clear_button': 'Clear-fr',
       'all_calculations_filter_refresh_button': 'Refresh-fr',
@@ -64,4 +65,38 @@ get frFR => {
       'all_calculations_column_initial_sum': 'Initial sum-fr',
       'all_calculations_column_calculated_sum': 'Calculated sum-fr',
       'all_calculations_column_rate': 'EUR to USD rate-fr',
+      // All users view
+      'all_users_info_access_mode': "User's access mode was changed-fr",
+      // Authorize user
+      'auth_validate_email_mandatory': 'E-mail must be provided.-fr',
+      'auth_validate_email_invalid': 'Not valid e-mail.-fr',
+      'auth_validate_password_mandatory': 'Password must be provided.-fr',
+      'auth_validate_passwords_unmatch': 'Passwords do not match.-fr',
+      'auth_error_weak_password': 'The password provided is too weak!-fr',
+      'auth_error_email-already-in-use':
+          'The account already exists for that email.-fr',
+      'auth_error_not_loggedin': 'You are not loggedin!-fr',
+      'auth_error_user-mismatch':
+          'The credential given does not correspond to the user.-fr',
+      'auth_error_user-not-found':
+          'The credential given does not correspond to the user.-fr',
+      'auth_error_invalid-credential':
+          'The provider' 's credential is not valid.-fr',
+      'auth_error_invalid-email': "The provider's email is not valid.-fr",
+      'auth_error_wrong-password': 'The provided password is not valid.-fr',
+      'aut_error_authentication_error': 'Authentication error!-fr',
+      'auth_error_password_check_error': 'Password check error!-fr',
+      'auth_message_enter_credentials': 'Enter email and password.-fr',
+      'auth_message_password_changed': 'Password successfully changed.-fr',
+      'auth_reset_password_question':
+          'Do You really want to reset your password?-fr',
+      // Profile change
+      'profile_change_display_name_updated': 'Display name was updated.-fr',
+      'profile_change_possition_updated': 'Possition was updated.-fr',
+      'profile_change_phone_updated': 'Phone was updated.-fr',
+      'profile_change_enabled_changed':
+          "User's account access right was changed.-fr",
+      'profile_change_password_empty': 'The password is empty!-fr',
+      'profile_change_unimplemented_feature':
+          'Sorry! Feature is not implemented yet.-fr',
     };

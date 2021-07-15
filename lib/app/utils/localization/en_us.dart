@@ -49,11 +49,11 @@ get enUS => {
       'calculator_eur_to_usd_rate': 'Current USD to EUR rate:',
       'calculator_eur_to_usd_rate_hint': '1 USD in EUR',
       // Admin dashboard view
-      'admin_dashboard_title': 'Administrators Dashboard',
+      'admin_dashboard_title': "Administrator's Dashboard",
       'admin_dashboard_manage_users': 'Manage users',
       'admin_dashboard_all_calculations': 'Review all calculations',
       // All calculations view
-      'all_calculations_silters_title': 'Filters',
+      'all_calculations_filters_title': 'Filters',
       'all_calculations_filter_initial_sum': 'Initial sum',
       'all_calculations_filter_greater_than': 'greater than',
       'all_calculations_filter_equals': 'equals',
@@ -65,5 +65,38 @@ get enUS => {
       'all_calculations_column_initial_sum': 'Initial sum',
       'all_calculations_column_calculated_sum': 'Calculated sum',
       'all_calculations_column_rate': 'EUR to USD rate',
-      //
+      // All users view
+      'all_users_info_access_mode': "User's access mode was changed",
+      // Authorize user
+      'auth_validate_email_mandatory': 'E-mail must be provided.',
+      'auth_validate_email_invalid': 'Not valid e-mail.',
+      'auth_validate_password_mandatory': 'Password must be provided.',
+      'auth_validate_passwords_unmatch': 'Passwords do not match.',
+      'auth_error_weak_password': 'The password provided is too weak!',
+      'auth_error_email-already-in-use':
+          'The account already exists for that email.',
+      'auth_error_not_loggedin': 'You are not loggedin!',
+      'auth_error_user-mismatch':
+          'The credential given does not correspond to the user.',
+      'auth_error_user-not-found':
+          'The credential given does not correspond to the user.',
+      'auth_error_invalid-credential':
+          'The provider' 's credential is not valid.',
+      'auth_error_invalid-email': "The provider's email is not valid.",
+      'auth_error_wrong-password': 'The provided password is not valid.',
+      'aut_error_authentication_error': 'Authentication error!',
+      'auth_error_password_check_error': 'Password check error!',
+      'auth_message_enter_credentials': 'Enter email and password.',
+      'auth_message_password_changed': 'Password successfully changed.',
+      'auth_reset_password_question':
+          'Do You really want to reset your password?',
+      // Profile change
+      'profile_change_display_name_updated': 'Display name was updated.',
+      'profile_change_possition_updated': 'Possition was updated.',
+      'profile_change_phone_updated': 'Phone was updated.',
+      'profile_change_enabled_changed':
+          "User's account access right was changed.",
+      'profile_change_password_empty': 'The password is empty!',
+      'profile_change_unimplemented_feature':
+          'Sorry! Feature is not implemented yet.',
     };

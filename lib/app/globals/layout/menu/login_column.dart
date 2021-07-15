@@ -15,7 +15,7 @@ class LoginColumn extends GetWidget<AuthController> {
           controller: controller.email,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            labelText: 'Email',
+            labelText: 'login_email'.tr,
             border: InputBorder.none,
             labelStyle: TextStyle(fontSize: 18, color: Colors.white),
           ),
@@ -28,7 +28,7 @@ class LoginColumn extends GetWidget<AuthController> {
           controller: controller.password,
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'Password',
+            labelText: 'login_password'.tr,
             border: InputBorder.none,
             labelStyle: TextStyle(fontSize: 18, color: Colors.white),
           ),
@@ -44,7 +44,7 @@ class LoginColumn extends GetWidget<AuthController> {
               controller.login();
             },
             child: Text(
-              'Login',
+              'login_button'.tr,
               style: smallButtonStyle(context),
             )),
       ),
@@ -54,7 +54,7 @@ class LoginColumn extends GetWidget<AuthController> {
             Get.toNamed(Routes.SIGNUP);
           },
           child: Text(
-            'Sign Up',
+            'sign_up_button'.tr,
             style: smallTextButtonStyle(context),
           )),
       SizedBox(height: 25),

@@ -18,7 +18,7 @@ class LogoutColumn extends GetWidget<UserController> {
                 child: Text(
                   controller.email.isNotEmpty
                       ? controller.displayName.value
-                      : 'Not connected!',
+                      : 'logout_not_connected'.tr,
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
@@ -39,7 +39,7 @@ class LogoutColumn extends GetWidget<UserController> {
                         Get.toNamed(Routes.ADMIN_DASHBOARD);
                       },
                       child: Text(
-                        'Admin pannel',
+                        'admin_pannel_button'.tr,
                         style: smallButtonStyle(context),
                       ),
                     ),
@@ -58,7 +58,7 @@ class LogoutColumn extends GetWidget<UserController> {
               Get.find<AuthController>().logout();
             },
             child: Text(
-              'Logout',
+              'logout_button'.tr,
               style: smallButtonStyle(context),
             ),
           ),
@@ -70,7 +70,7 @@ class LogoutColumn extends GetWidget<UserController> {
           child: ElevatedButton(
             onPressed: () => Get.toNamed(Routes.PROFILE),
             child: Text(
-              'Edit Profile',
+              'edit_profile_button'.tr,
               style: smallButtonStyle(context),
             ),
           ),

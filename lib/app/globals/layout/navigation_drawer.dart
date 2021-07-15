@@ -32,7 +32,7 @@ class NavigationDrawer extends GetWidget<AuthController> {
                               Get.toNamed(Routes.HOME);
                             },
                             child: Text(
-                              'Home',
+                              'menu_home'.tr,
                               style: navigationButtonStyle(context),
                             )),
                         SizedBox(height: 35),
@@ -41,7 +41,7 @@ class NavigationDrawer extends GetWidget<AuthController> {
                             Get.toNamed(Routes.CALCULATOR);
                           },
                           child: Text(
-                            'Calculator',
+                            'menu_calculator'.tr,
                             style: navigationButtonStyle(context),
                           ),
                         ),

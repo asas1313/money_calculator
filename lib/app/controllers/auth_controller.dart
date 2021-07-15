@@ -38,18 +38,18 @@ class AuthController extends GetxController {
 
   String? validate() {
     if (email.text.isEmpty) {
-      return 'E-mail must be provided.';
+      return 'auth_validate_email_mandatory'.tr;
     }
     if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email.text)) {
-      return 'Not valid e-mail.';
+      return 'auth_validate_email_invalid'.tr;
     }
     if (password.text.isEmpty) {
-      return 'Password must be provided.';
+      return 'auth_validate_password_mandatory'.tr;
     }
     if (password.value != passwordConfirm.value) {
-      return 'Passwords do not match.';
+      return ''.tr;
     }
     return null;
   }
@@ -69,10 +69,10 @@ class AuthController extends GetxController {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        Get.snackbar('Error', 'The password provided is too weak!',
+        Get.snackbar('error_title'.tr, 'auth_error_weak_password'.tr,
             backgroundColor: Get.theme.errorColor);
       } else if (e.code == 'email-already-in-use') {
-        Get.snackbar('Error', 'The account already exists for that email.',
+        Get.snackbar('error_title'.tr, ''.tr,
             backgroundColor: Get.theme.errorColor);
       }
     } catch (e) {
@@ -82,7 +82,7 @@ class AuthController extends GetxController {
 
   login({bool goToHome = false}) {
     if (email.text.isEmpty || password.text.isEmpty) {
-      Get.snackbar('Message', 'Enter email and password.');
+      Get.snackbar('message_title'.tr, 'auth_message_enter_credentials'.tr);
       return;
     }
 
@@ -122,30 +122,30 @@ class AuthController extends GetxController {
           EmailAuthProvider.credential(email: _user.email!, password: password);
       try {
         _user.reauthenticateWithCredential(_authCredentials).then((value) {
-          return value.user == null ? null : 'You are not loggedin!';
+          return value.user == null ? null : 'auth_error_not_loggedin'.tr;
         });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-mismatch') {
-          return 'The credential given does not correspond to the user.';
+          return 'auth_error_user-mismatch'.tr;
         } else if (e.code == 'user-not-found') {
-          return 'The credential given does not correspond to the user.';
+          return 'auth_error_user-not-found'.tr;
         } else if (e.code == 'invalid-credential') {
-          return 'The provider' 's credential is not valid.';
+          return 'auth_error_invalid-credential'.tr;
         } else if (e.code == 'invalid-email') {
-          return 'The provider' 's email is not valid.';
+          return 'auth_error_invalid-email'.tr;
         } else if (e.code == 'wrong-password') {
-          return 'The provided password is not valid.';
+          return 'auth_error_wrong-password'.tr;
         } else {
           print(e.toString());
-          return 'Authentication error!';
+          return 'aut_error_authentication_error'.tr;
         }
       } catch (e) {
         print(e.toString());
-        return 'Password check error!';
+        return 'auth_error_password_check_error'.tr;
       }
     } else {
-      Get.snackbar('Error', 'You are not logged in!');
-      return 'You are not logged in!';
+      Get.snackbar('error_title'.tr, 'auth_error_not_loggedin'.tr);
+      return 'auth_error_not_loggedin'.tr;
     }
   }
 
@@ -153,28 +153,28 @@ class AuthController extends GetxController {
     var _user = _auth.currentUser;
 
     if (password.isEmpty) {
-      return 'Password must be provided.';
+      return 'auth_validate_password_mandatory'.tr;
     }
     if (password != passwordConfirm) {
-      return 'Passwords do not match.';
+      return 'auth_validate_passwords_unmatch'.tr;
     }
 
     if (_user != null) {
       _user
           .updatePassword(password)
-          .then((value) => print('Password successfully changed.'))
+          .then((value) => print('auth_message_password_changed'.tr))
           .catchError((error) {
         print('Password could not be changed: \n${error.toString()}');
       });
     } else {
-      Get.snackbar('Error', 'You are not logged in!');
+      Get.snackbar('error_title'.tr, 'auth_error_not_loggedin'.tr);
     }
   }
 
   void resetPassword() {
     Get.defaultDialog(
         title: 'Alert',
-        content: Text('Do You really want to reset your password?'),
+        content: Text(''.tr),
         onCancel: () => Get.back(),
         onConfirm: () {
           _auth.sendPasswordResetEmail(email: email.text);

@@ -35,7 +35,7 @@ class AllCalculationsView extends GetWidget<AllCalculationsController> {
                                 child: ListTile(
                                   title: SizedBox(
                                     child: Text(
-                                      'all_calculations_silters_title'.tr,
+                                      'all_calculations_filters_title'.tr,
                                     ),
                                   ),
                                   subtitle: Text(''),

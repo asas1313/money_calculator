@@ -19,8 +19,8 @@ class AllUsersController extends GetxController {
   changeUserMode(String email, bool enabled) {
     firestore.setEnabled(email: email, enabled: enabled);
     Get.snackbar(
-      'Information',
-      'User' 's access mode was changed',
+      'info_title'.tr,
+      'all_users_info_access_mode'.tr,
       backgroundColor: Get.theme.backgroundColor,
     );
   }

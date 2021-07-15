@@ -53,7 +53,7 @@ get ltLT => {
       'admin_dashboard_manage_users': 'Valdyti vartotojus',
       'admin_dashboard_all_calculations': 'Peržiūrėti visus paskaičiavimus',
       // All calculations view
-      'all_calculations_silters_title': 'Filtrai',
+      'all_calculations_filters_title': 'Filtrai',
       'all_calculations_filter_initial_sum': 'Pradinė suma',
       'all_calculations_filter_greater_than': 'daugiau nei',
       'all_calculations_filter_equals': 'lygi',
@@ -65,4 +65,35 @@ get ltLT => {
       'all_calculations_column_initial_sum': 'Pradinė suma',
       'all_calculations_column_calculated_sum': 'Suskaičiuota suma',
       'all_calculations_column_rate': 'EUR su USD kursas',
+      // All users view
+      'all_users_info_access_mode': "Vartotojo priėjimo teisės pakeistos",
+      // Authorize user
+      'auth_validate_email_mandatory': 'El.paštas yra būtinas.',
+      'auth_validate_email_invalid': 'Neteisingas el.pašto formatas.',
+      'auth_validate_password_mandatory': 'Slaptažodis yra būtinas.',
+      'auth_validate_passwords_unmatch': 'Slaptažodžiai nesutampa.',
+      'auth_error_weak_password': 'Pateiktas slaptažodis yra per silpnas!',
+      'auth_error_email-already-in-use':
+          'Vartotojas su tokiu el.paštu jau egzistuoja.',
+      'auth_error_not_loggedin': 'Jūs neprisijungęs!',
+      'auth_error_user-mismatch': 'Pateikti duomenys nepriklauso vartotojui.',
+      'auth_error_user-not-found': 'Pateikti duomenys nepriklauso vartotojui.',
+      'auth_error_invalid-credential': 'Pateikti duomenys yra netikslūs.',
+      'auth_error_invalid-email': 'Pateikėjo el.paštas neatitinka.',
+      'auth_error_wrong-password': 'Pateiktas slaptažodis neatitinka.',
+      'aut_error_authentication_error': 'Autentifikavimo klaida!',
+      'auth_error_password_check_error': 'Slaptažodžio tikrinimo klaida!',
+      'auth_message_enter_credentials': 'Įveskite el.paštą ir slaptažodį.',
+      'auth_message_password_changed': 'Slaptažodis sėkmingai pakeistas.',
+      'auth_reset_password_question':
+          'Ar jūs tikrai norite atstatyti slaptažodį?',
+      // Profile change
+      'profile_change_display_name_updated': 'Vartotojo vardas buvo pakeistas.',
+      'profile_change_possition_updated': 'Pareigos buvo pakeistos.',
+      'profile_change_phone_updated': 'Telefonas buvo pakeistas.',
+      'profile_change_enabled_changed':
+          "Vartotojo prisijungimo teisės buvo pakeistos.",
+      'profile_change_password_empty': 'Tuščias slaptažodis!',
+      'profile_change_unimplemented_feature':
+          'Atsiprašome! Šios galimybės dar nėra.',
     };
