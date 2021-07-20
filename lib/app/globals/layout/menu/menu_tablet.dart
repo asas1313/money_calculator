@@ -69,6 +69,16 @@ class MenuTablet extends GetWidget<AuthController> {
                                           navigationSmallButtonStyle(context),
                                     ),
                                   ),
+                                  SizedBox(width: 25),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Get.toNamed(Routes.CUSTOMER),
+                                    child: Text(
+                                      'menu_customers'.tr,
+                                      style:
+                                          navigationSmallButtonStyle(context),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

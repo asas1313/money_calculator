@@ -45,6 +45,14 @@ class NavigationDrawer extends GetWidget<AuthController> {
                             style: navigationButtonStyle(context),
                           ),
                         ),
+                        SizedBox(height: 35),
+                        TextButton(
+                          onPressed: () => Get.toNamed(Routes.CUSTOMER),
+                          child: Text(
+                            'menu_customers'.tr,
+                            style: navigationButtonStyle(context),
+                          ),
+                        ),
                       ],
                     ),
                   )

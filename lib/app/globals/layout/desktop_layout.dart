@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 import '../widgets/app_controls/check_version.dart';
 import 'menu/menu_tablet.dart';
@@ -17,15 +16,13 @@ class DesktopLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CheckVersion(
-      child: ResponsiveBuilder(
-        builder: (context, sizingInformation) => Scaffold(
-          body: Column(
-            children: <Widget>[
-              MenuTablet(isNavigationVisible: isNavigationVisible),
-              Expanded(child: child),
-              Footer(),
-            ],
-          ),
+      child: Scaffold(
+        body: Column(
+          children: <Widget>[
+            MenuTablet(isNavigationVisible: isNavigationVisible),
+            Expanded(child: child),
+            Footer(),
+          ],
         ),
       ),
     );

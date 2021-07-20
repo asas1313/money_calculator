@@ -1,7 +1,5 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import 'desktop_layout.dart';
 import 'mobile_layout.dart';
@@ -14,16 +12,17 @@ class LayoutTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kIsWeb || Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
-      return DesktopLayout(
-        child: child,
-        isNavigationVisible: isNavigationVisible,
-      );
-    }
-
-    return MobileLayout(
-      child: child,
-      isNavigationVisible: isNavigationVisible,
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) =>
+          sizingInformation.screenSize.width > 800
+              ? DesktopLayout(
+                  child: child,
+                  isNavigationVisible: isNavigationVisible,
+                )
+              : MobileLayout(
+                  child: child,
+                  isNavigationVisible: isNavigationVisible,
+                ),
     );
   }
 }

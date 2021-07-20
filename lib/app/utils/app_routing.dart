@@ -1,19 +1,21 @@
 import 'package:get/get.dart';
+import 'package:inkubox_app/app/controllers/bindings/customer_binding.dart';
 
-import '../controllers/bindings/admin_dashboard_binding.dart';
-import '../controllers/bindings/all_calculation_binding.dart';
-import '../controllers/bindings/all_users_binding.dart';
-import '../controllers/bindings/calculator_binding.dart';
-import '../controllers/bindings/profile_binding.dart';
-import '../globals/layout/layout_template.dart';
-import '../views/calculator_view.dart';
-import '../views/home_view.dart';
-import '../views/admin_dashboard_view.dart';
-import '../views/login_view.dart';
-import '../views/profile_view.dart';
-import '../views/signup_view.dart';
-import '../views/all_users_view.dart';
-import '../views/all_calculations_view.dart';
+import '/app/controllers/bindings/admin_dashboard_binding.dart';
+import '/app/controllers/bindings/all_calculation_binding.dart';
+import '/app/controllers/bindings/all_users_binding.dart';
+import '/app/controllers/bindings/calculator_binding.dart';
+import '/app/controllers/bindings/profile_binding.dart';
+import '/app/globals/layout/layout_template.dart';
+import '/app/views/calculator_view.dart';
+import '/app/views/customer_view.dart';
+import '/app/views/home_view.dart';
+import '/app/views/admin_dashboard_view.dart';
+import '/app/views/login_view.dart';
+import '/app/views/profile_view.dart';
+import '/app/views/signup_view.dart';
+import '/app/views/all_users_view.dart';
+import '/app/views/all_calculations_view.dart';
 
 class Routes {
   static const HOME = '/home';
@@ -24,6 +26,7 @@ class Routes {
   static const ADMIN_DASHBOARD = '/admin-dashboard';
   static const ADMIN_ALL_USERS = '/admin-all-users';
   static const ADMIN_ALL_CALCULATIONS = '/admin-all-calculations';
+  static const CUSTOMER = '/customer';
 }
 
 class AppRouting {
@@ -64,6 +67,11 @@ class AppRouting {
       name: Routes.ADMIN_ALL_CALCULATIONS,
       page: () => LayoutTemplate(child: AllCalculationsView()),
       binding: AllCalculationsBinding(),
+    ),
+    GetPage(
+      name: Routes.CUSTOMER,
+      page: () => LayoutTemplate(child: CustomerView()),
+      binding: CustomerBinding(),
     ),
   ];
 }
