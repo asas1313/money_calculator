@@ -82,7 +82,7 @@ class SignupView extends GetWidget<AuthController> {
                   ElevatedButton(
                     onPressed: () {
                       var _error = controller.validate();
-                      if (_error == null) {
+                      if (_error == null || _error.isEmpty) {
                         controller.createAccount();
                       } else {
                         Get.snackbar(
